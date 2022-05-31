@@ -1,8 +1,7 @@
 {
-  "name": "emstracker",
+  "name": "ems-cert-track",
   "version": "0.1.0",
   "private": true,
-  "contributors": ["Andrew Peterson", "Cuong Le", "Drew Labrie", "Frank Spathanas"],
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
