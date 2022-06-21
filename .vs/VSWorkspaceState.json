@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\amplify",
+    "\\amplify\\backend\\api",
+    "\\amplify\\backend\\api\\emscerttrack",
+    "\\src",
+    "\\src\\components",
+    "\\src\\models"
+  ],
+  "SelectedNode": "\\src\\components\\Registration.tsx",
+  "PreviewInSolutionExplorer": false
+}
