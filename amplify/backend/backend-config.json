@@ -9,16 +9,21 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
         }
       }
     }
   },
   "auth": {
-    "emscerttrack3e5101b7": {
+    "emscerttrack4a5cb80f": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

@@ -2,12 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\amplify",
-    "\\amplify\\backend\\api",
-    "\\amplify\\backend\\api\\emscerttrack",
+    "\\amplify\\backend",
+    "\\amplify\\backend\\auth",
+    "\\amplify\\backend\\auth\\emscerttrack4a5cb80f",
     "\\src",
-    "\\src\\components",
-    "\\src\\models"
+    "\\src\\pages",
+    "\\src\\pages\\login",
+    "\\src\\pages\\registration"
   ],
-  "SelectedNode": "\\src\\components\\Registration.tsx",
+  "SelectedNode": "\\src\\pages\\registration\\Registration.tsx",
   "PreviewInSolutionExplorer": false
 }
