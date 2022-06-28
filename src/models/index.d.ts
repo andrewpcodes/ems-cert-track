@@ -36,6 +36,8 @@ export declare class Checklist {
   readonly dateStarted?: string | null;
   readonly dateCompleted?: string | null;
   readonly isComplete?: boolean | null;
+  readonly hours?: number | null;
+  readonly category?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Checklist, ChecklistMetaData>);
