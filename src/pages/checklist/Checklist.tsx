@@ -16,10 +16,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React, { useEffect, useState } from "react";
 import { API, Auth, graphqlOperation } from "aws-amplify";
 import { listChecklists } from "../../graphql/queries";
-import { createChecklist, deleteChecklist } from "../../graphql/mutations";
+import { createChecklist } from "../../graphql/mutations";
 import { GraphQLQuery } from "@aws-amplify/api";
 import { Checklist } from "../../API";
-import "./checklist.css";
 import { useNavigate } from "react-router-dom";
 
 function UserChecklist() {
