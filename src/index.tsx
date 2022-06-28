@@ -8,7 +8,7 @@ import Navbar from "./components/navbar/Navbar";
 import UserChecklist from "./pages/checklist/Checklist";
 import Registration from "./pages/registration/Registration";
 import Homepage from "./pages/hompage/Homepage";
-import Rectification from "./pages/rectification-info/Rectification";
+import Recertification from "./pages/rectification-info/Rectification";
 import Login from "./pages/login/Login";
 import Courses from "./pages/courses/Courses";
 
@@ -24,7 +24,7 @@ root.render(
         <Route index element={<Homepage />} />
         <Route path="checklist" element={<UserChecklist />} />
         <Route path="register" element={<Registration />} />
-        <Route path="rectification" element={<Rectification />} />
+        <Route path="recertification" element={<Recertification />} />
         <Route path="login" element={<Login />} />
         <Route path="courses" element={<Courses />} />
       </Routes>

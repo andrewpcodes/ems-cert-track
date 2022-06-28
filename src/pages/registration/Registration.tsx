@@ -197,7 +197,7 @@ function Registration() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Authenticate
               </Button>
               <Grid container>
                 <Grid item xs></Grid>
