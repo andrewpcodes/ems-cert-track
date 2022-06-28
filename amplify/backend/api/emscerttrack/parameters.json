@@ -2,9 +2,6 @@
   "AppSyncApiName": "emscerttrack",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-<<<<<<< HEAD
-  "AuthModeLastUpdated": "2022-06-10T02:43:32.384Z"
-=======
   "AuthModeLastUpdated": "2022-06-27T18:57:39.951Z",
   "AuthCognitoUserPoolId": {
     "Fn::GetAtt": [
@@ -12,5 +9,4 @@
       "Outputs.UserPoolId"
     ]
   }
->>>>>>> 1c4d0fb48061bd23682f9635fe1f17a729e04cd6
 }

@@ -33,9 +33,7 @@ function Rectification() {
                       <h3> Local or State component - 10 Hour </h3> 
                                            
                       <h3> Airway/Respiration/Ventilation - 1.5 Hour </h3>
-                      
-                      <h3> Airway/Respiration/Ventilation - 1.5 Hour </h3>
-                     
+                                         
                       <h3> Operations - 5 Hour </h3>
                          
                      </div>         
