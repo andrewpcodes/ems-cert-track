@@ -3,7 +3,11 @@
   "serviceConfiguration": {
     "apiName": "emscerttrack",
     "serviceName": "AppSync",
+<<<<<<< HEAD
     "gqlSchemaPath": "/tmp/amplify-efb7154a-b626-40c6-8c05-f3a645a58ff0/amplify/backend/api/emscerttrack/schema.graphql",
+=======
+    "gqlSchemaPath": "/tmp/amplify-cf95c376-422d-4c4b-99ff-60de456596e3/amplify/backend/api/emscerttrack/schema.graphql",
+>>>>>>> 1c4d0fb48061bd23682f9635fe1f17a729e04cd6
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",
@@ -17,6 +21,13 @@
     "additionalAuthTypes": [
       {
         "mode": "AWS_IAM"
+<<<<<<< HEAD
+=======
+      },
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authemscerttrack4a5cb80f"
+>>>>>>> 1c4d0fb48061bd23682f9635fe1f17a729e04cd6
       }
     ]
   }

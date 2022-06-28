@@ -3,7 +3,15 @@
     "emscerttrack": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "emscerttrack4a5cb80f",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
       "output": {
         "authConfig": {
           "defaultAuthentication": {
@@ -16,6 +24,15 @@
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "AWS_IAM"
+<<<<<<< HEAD
+=======
+            },
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authemscerttrack4a5cb80f"
+              }
+>>>>>>> 1c4d0fb48061bd23682f9635fe1f17a729e04cd6
             }
           ]
         }

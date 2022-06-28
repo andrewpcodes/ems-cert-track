@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { setFlagsFromString } from "v8";
 import "./stylesheet.css"
 import recert from './public/recert.jpg';
-import { render } from "@testing-library/react";
+
 
 function Rectification() {
     return (

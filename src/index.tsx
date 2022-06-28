@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+    <React.StrictMode>
     <BrowserRouter>
       <Navbar />
       <Routes>
@@ -28,7 +28,8 @@ root.render(
         <Route path="login" element={<Login />} />
         <Route path="courses" element={<Courses />} />
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+  
   </React.StrictMode>
 );
 

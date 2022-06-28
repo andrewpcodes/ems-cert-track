@@ -9,7 +9,11 @@ type User @model @auth(rules: [{allow: public}]) {
   Checklist: [Checklist] @hasMany(indexName: "byUser", fields: ["id"])
 }
 
+<<<<<<< HEAD
 type Checklist @model @auth(rules: [{allow: public}]) {
+=======
+type Checklist @model @auth(rules: [{allow: owner}, {allow: private}]) {
+>>>>>>> 1c4d0fb48061bd23682f9635fe1f17a729e04cd6
   id: ID!
   userID: ID! @index(name: "byUser")
   name: String
@@ -18,5 +22,10 @@ type Checklist @model @auth(rules: [{allow: public}]) {
   dateStarted: AWSDate
   dateCompleted: AWSDate
   isComplete: Boolean
+<<<<<<< HEAD
+=======
+  hours: Int
+  category: Int
+>>>>>>> 1c4d0fb48061bd23682f9635fe1f17a729e04cd6
 }
  
