@@ -7,7 +7,9 @@ function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    isLoggedIn();
+    if (!loggedIn) {
+      isLoggedIn();
+    }
   });
 
   const isLoggedIn = async () => {
