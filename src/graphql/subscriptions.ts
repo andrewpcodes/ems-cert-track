@@ -22,12 +22,13 @@ export const onCreateUser = /* GraphQL */ `
           dateStarted
           dateCompleted
           isComplete
+          hours
+          category
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -60,12 +61,13 @@ export const onUpdateUser = /* GraphQL */ `
           dateStarted
           dateCompleted
           isComplete
+          hours
+          category
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -98,12 +100,13 @@ export const onDeleteUser = /* GraphQL */ `
           dateStarted
           dateCompleted
           isComplete
+          hours
+          category
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -117,8 +120,8 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreateChecklist = /* GraphQL */ `
-  subscription OnCreateChecklist($owner: String) {
-    onCreateChecklist(owner: $owner) {
+  subscription OnCreateChecklist {
+    onCreateChecklist {
       id
       userID
       name
@@ -127,18 +130,19 @@ export const onCreateChecklist = /* GraphQL */ `
       dateStarted
       dateCompleted
       isComplete
+      hours
+      category
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
 export const onUpdateChecklist = /* GraphQL */ `
-  subscription OnUpdateChecklist($owner: String) {
-    onUpdateChecklist(owner: $owner) {
+  subscription OnUpdateChecklist {
+    onUpdateChecklist {
       id
       userID
       name
@@ -147,18 +151,19 @@ export const onUpdateChecklist = /* GraphQL */ `
       dateStarted
       dateCompleted
       isComplete
+      hours
+      category
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
 export const onDeleteChecklist = /* GraphQL */ `
-  subscription OnDeleteChecklist($owner: String) {
-    onDeleteChecklist(owner: $owner) {
+  subscription OnDeleteChecklist {
+    onDeleteChecklist {
       id
       userID
       name
@@ -167,12 +172,13 @@ export const onDeleteChecklist = /* GraphQL */ `
       dateStarted
       dateCompleted
       isComplete
+      hours
+      category
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;

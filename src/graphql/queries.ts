@@ -22,12 +22,13 @@ export const getUser = /* GraphQL */ `
           dateStarted
           dateCompleted
           isComplete
+          hours
+          category
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -117,12 +118,13 @@ export const getChecklist = /* GraphQL */ `
       dateStarted
       dateCompleted
       isComplete
+      hours
+      category
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -142,12 +144,13 @@ export const listChecklists = /* GraphQL */ `
         dateStarted
         dateCompleted
         isComplete
+        hours
+        category
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt
@@ -176,12 +179,13 @@ export const syncChecklists = /* GraphQL */ `
         dateStarted
         dateCompleted
         isComplete
+        hours
+        category
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        owner
       }
       nextToken
       startedAt

@@ -8,24 +8,40 @@ import {
   Button,
   TextField,
   Stack,
-  Select,
-  MenuItem,
-  SelectChangeEvent,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React, { useEffect, useState } from "react";
-import { API, Auth } from "aws-amplify";
-import * as mutations from "../../graphql/mutations";
+import { API, Auth, graphqlOperation } from "aws-amplify";
+import { listChecklists } from "../../graphql/queries";
+import { createChecklist, deleteChecklist } from "../../graphql/mutations";
+import { GraphQLQuery } from "@aws-amplify/api";
+import { Checklist } from "../../API";
+import "./checklist.css";
+import { useNavigate } from "react-router-dom";
 
-function Checklist() {
+function UserChecklist() {
   const [showModal, setShowModal] = useState(false);
-  const [cat, setCat] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState<any>();
+  const [checklist, setChecklist] = useState<any>(null);
+  const [userChecklist, setUserChecklist] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (userChecklist.length === 0) {
+      fetchChecklist();
+    }
     if (!loggedIn) {
       isLoggedIn();
     }
+  });
+
+  useEffect(() => {
+    if (checklist == null) fetchChecklist();
   });
 
   const isLoggedIn = async () => {
@@ -40,6 +56,20 @@ function Checklist() {
     setShowModal(!showModal);
   };
 
+  async function fetchChecklist() {
+    try {
+      const result = await API.graphql<GraphQLQuery<typeof listChecklists>>(
+        graphqlOperation(listChecklists, {
+          filter: { userID: { eq: user.id } },
+        })
+      );
+      setChecklist(result.data);
+      setUserChecklist(checklist.listChecklists.items);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -49,21 +79,16 @@ function Checklist() {
       userID: user.id,
       description: data.get("description"),
       courseNumber: data.get("courseNumber"),
-      //category: cat,
+      hours: data.get("hours"),
     };
 
-    console.log(checklistInput);
-
     await API.graphql({
-      query: mutations.createChecklist,
+      query: createChecklist,
       variables: { input: checklistInput },
     });
 
+    navigate(0);
     setShowModal(false);
-  };
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setCat(event.target.value as string);
   };
 
   return (
@@ -82,22 +107,23 @@ function Checklist() {
             Checklist
             <Button onClick={create}>Create</Button>
           </Typography>
-          <Divider />
-          <Typography component="h1" variant="h6">
-            Airway/Respiration/Ventilation - <Chip label="Time: 1.5 hrs" />
-          </Typography>
-          <Typography component="h1" variant="h6">
-            Trauma - <Chip label="Time: 1.5 hrs" />
-          </Typography>
-          <Typography component="h1" variant="h6">
-            Medical - <Chip label="Time: 1.5 hrs" />
-          </Typography>
-          <Typography component="h1" variant="h6">
-            Operations - <Chip label="Time: 5 hrs" />
-          </Typography>
-          <Typography component="h1" variant="h6">
-            Cardiovascular - <Chip label="Time: 6 hrs" />
-          </Typography>
+          <Divider className="divider" />
+          {userChecklist.map((item: Checklist) => (
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls={`${item.id}-content`}
+                id={item.id}
+              >
+                <Typography>{item.name}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>Description: {item.description}</Typography>
+                <Typography>Hours Completed: {item.hours}</Typography>
+                <Typography>Course Number: {item.courseNumber}</Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
         </Box>
         {showModal && loggedIn ? (
           <Box
@@ -134,19 +160,6 @@ function Checklist() {
                 label="Hours Completed"
                 id="hours"
               />
-              <Select
-                labelId="category"
-                id="category"
-                value={cat}
-                label="Category"
-                onChange={handleChange}
-              >
-                <MenuItem value={1}>Airway/Respiration/Ventilation</MenuItem>
-                <MenuItem value={2}>Trauma</MenuItem>
-                <MenuItem value={3}>Medical</MenuItem>
-                <MenuItem value={4}>Operations</MenuItem>
-                <MenuItem value={5}>Cardiovascular</MenuItem>
-              </Select>
               <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Submit
               </Button>
@@ -158,4 +171,4 @@ function Checklist() {
   );
 }
 
-export default Checklist;
+export default UserChecklist;

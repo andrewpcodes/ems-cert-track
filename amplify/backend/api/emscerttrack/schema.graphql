@@ -1,4 +1,4 @@
-type User @model @auth(rules: [{allow: public}]) {
+type User @model @auth(rules: [{ allow: public }]) {
   id: ID!
   emsID: String
   firstName: String
@@ -9,7 +9,18 @@ type User @model @auth(rules: [{allow: public}]) {
   Checklist: [Checklist] @hasMany(indexName: "byUser", fields: ["id"])
 }
 
-type Checklist @model @auth(rules: [{allow: owner}, {allow: private}]) {
+type Checklist
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        operations: [create, update, delete]
+        ownerField: "userID"
+      }
+      { allow: public }
+    ]
+  ) {
   id: ID!
   userID: ID! @index(name: "byUser")
   name: String
@@ -21,4 +32,3 @@ type Checklist @model @auth(rules: [{allow: owner}, {allow: private}]) {
   hours: Int
   category: Int
 }
- 

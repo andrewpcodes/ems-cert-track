@@ -30,20 +30,13 @@ function Navbar() {
   return (
     <ul>
       <li>
-        <Link
-          to="/"
-          onClick={() => {
-            navigate(0);
-          }}
-        >
-          Home
-        </Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
         <Link to="/checklist">Checklist</Link>
       </li>
       <li>
-        <Link to="/rectification">Rectification</Link>
+        <Link to="/recertification">Recertification</Link>
       </li>
       <li>
         <Link to="/courses">Courses</Link>
