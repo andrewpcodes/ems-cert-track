@@ -25,12 +25,13 @@ export const createUser = /* GraphQL */ `
           dateStarted
           dateCompleted
           isComplete
+          hours
+          category
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -66,12 +67,13 @@ export const updateUser = /* GraphQL */ `
           dateStarted
           dateCompleted
           isComplete
+          hours
+          category
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -107,12 +109,13 @@ export const deleteUser = /* GraphQL */ `
           dateStarted
           dateCompleted
           isComplete
+          hours
+          category
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -139,12 +142,13 @@ export const createChecklist = /* GraphQL */ `
       dateStarted
       dateCompleted
       isComplete
+      hours
+      category
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -162,12 +166,13 @@ export const updateChecklist = /* GraphQL */ `
       dateStarted
       dateCompleted
       isComplete
+      hours
+      category
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -185,12 +190,13 @@ export const deleteChecklist = /* GraphQL */ `
       dateStarted
       dateCompleted
       isComplete
+      hours
+      category
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
