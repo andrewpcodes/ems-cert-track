@@ -28,31 +28,31 @@ function Navbar() {
   };
 
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
+    <ul className="navbar-ul">
+      <li className="navbar-li">
+        <Link className="navbar-link" to="/">Home</Link>
       </li>
-      <li>
-        <Link to="/checklist">Checklist</Link>
+      <li className="navbar-li">
+        <Link className="navbar-link" to="/checklist">Checklist</Link>
       </li>
-      <li>
-        <Link to="/recertification">Recertification</Link>
+      <li className="navbar-li">
+        <Link className="navbar-link" to="/recertification">Recertification</Link>
       </li>
-      <li>
-        <Link to="/courses">Courses</Link>
+      <li className="navbar-li">
+        <Link className="navbar-link" to="/courses">Courses</Link>
       </li>
       {!loggedIn ? (
         <>
-          <li>
-            <Link to="/login">Login</Link>
+          <li className="navbar-li">
+            <Link className="navbar-link" to="/login">Login</Link>
           </li>
-          <li>
-            <Link to="/register">Register Account</Link>
+          <li className="navbar-li">
+            <Link className="navbar-link" to="/register">Register Account</Link>
           </li>
         </>
       ) : (
-        <li>
-          <Link
+        <li className="navbar-li">
+          <Link className="navbar-link"
             to="/"
             onClick={() => {
               signOut();

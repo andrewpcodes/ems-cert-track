@@ -1,0 +1,41 @@
+.pageTitle {
+    text-indent: 2ex;
+    font-family: 'Trebuchet MS';
+}
+
+.icon {
+    height: 5vmin;
+    margin-right: 1ex;
+}
+  
+.icon {
+    animation: icon-backflip;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+    animation-direction: reverse;
+    animation-play-state: paused;
+}
+
+.icon:hover {
+    animation-play-state: running;
+}
+
+@keyframes icon-backflip {
+    0% {
+        transform: rotate(0deg);
+    }
+    80% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pageText {
+    text-indent: 3ex;
+    column-count: 2;
+}
+
+
+

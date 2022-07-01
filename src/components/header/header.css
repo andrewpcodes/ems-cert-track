@@ -1,0 +1,27 @@
+.header {
+  background-color: darkslategrey;
+  text-align: left;
+  font-family: 'Gill Sans';
+}
+
+.text {
+  padding-left: 25px;
+  font-size: 40px;
+  color: burlywood;
+  border-radius: 10px;
+}
+
+.icon {
+  vertical-align: middle;
+  color: cadetblue;
+}
+
+.header:hover {
+  background-color: burlywood;
+  cursor: crosshair;
+  transition-duration: 350ms;
+}
+
+.text:hover {
+  color: darkslategray
+}
