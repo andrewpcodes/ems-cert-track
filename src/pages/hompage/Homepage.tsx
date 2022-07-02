@@ -19,6 +19,9 @@ function Homepage() {
           </div>
         </div>
       </div>
+      <article className='article'>
+        
+      </article>
     </div>
   );
 }

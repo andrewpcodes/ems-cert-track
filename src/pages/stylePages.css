@@ -1,7 +1,6 @@
 .page {
     padding-bottom: 2em;
     padding-left: 2em;
-    padding-right: 2em;
 }
 
 .pageTitle {
@@ -43,8 +42,17 @@
     column-count: 2;
 }
 
-.things {    
-    columns: 2;
+.paragraph {
+    width: 80%;
+}
+
+.table {
+    border: solid black;
+    border-radius: 1em;
+    padding-left: 2em;
+    width: 80%;
+    margin: auto;
+    margin-top: 4em;
 }
 
 /*
@@ -70,7 +78,7 @@
 
 .image-container-large {
     position: relative;
-    width: 100%;
+    width: 90%;
 }
 
 .image-container-small {
