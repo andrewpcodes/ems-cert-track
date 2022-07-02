@@ -8,6 +8,6 @@ function Header() {
       <header className='text'>EMS Certification Tracking</header>
     </div>
   );
-}
+} 
  
 export default Header;
