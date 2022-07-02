@@ -1,18 +1,21 @@
 .header {
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: darkslategrey;
   text-align: left;
   font-family: 'Gill Sans';
 }
 
 .text {
-  padding-left: 25px;
+  padding-left: 75px;
   font-size: 40px;
   color: burlywood;
   border-radius: 10px;
 }
 
 .icon {
-  vertical-align: middle;
+  float: left;
+  padding-left: 10px;
   color: cadetblue;
 }
 

@@ -1,14 +1,19 @@
+.page {
+    padding-bottom: 2em;
+    padding-left: 2em;
+}
+
 .pageTitle {
     text-indent: 2ex;
     font-family: 'Trebuchet MS';
 }
 
-.icon {
+.pageIcon {
     height: 5vmin;
     margin-right: 1ex;
 }
   
-.icon {
+.pageIcon {
     animation: icon-backflip;
     animation-iteration-count: infinite;
     animation-duration: 3s;
@@ -16,7 +21,7 @@
     animation-play-state: paused;
 }
 
-.icon:hover {
+.pageIcon:hover {
     animation-play-state: running;
 }
 
@@ -37,5 +42,12 @@
     column-count: 2;
 }
 
+.photo {
+    margin-left: 2em;
+    max-width: 100%;
+    height: auto;
+}
 
-
+.things {    
+    columns: 2;
+}
