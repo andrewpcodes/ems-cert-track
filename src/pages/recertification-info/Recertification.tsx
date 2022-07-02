@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { setFlagsFromString } from "v8";
 import '../stylePages.css';
-import icon from '../../test.svg';
+import icon from '../../pagetitle-icon.svg';
 
 function Recertification() {
   return (
@@ -10,9 +10,12 @@ function Recertification() {
         <img src={icon} className='pageIcon' alt='icon' />
         Starting Your Recertification
       </h1>
-      <i className='photo'>
-        <img src="recert.jpg" alt='somestockguy' />
-      </i>
+      <div className='image-container'>
+        <img src="recert.jpg" className='image' alt='somestockguy' />
+        <div className='overlay'>
+          <div className='caption'></div>
+        </div>
+      </div>
       <div className="landing-images-container">
         <div className="row">
           <article>

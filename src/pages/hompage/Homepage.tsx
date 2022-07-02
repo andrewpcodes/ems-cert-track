@@ -1,5 +1,5 @@
 ﻿import '../stylePages.css';
-import icon from '../../test.svg';
+import icon from '../../pagetitle-icon.svg';
 
 function Homepage() {
   return (
@@ -11,7 +11,14 @@ function Homepage() {
       <p className='pageText'>
         Here is some test text
       </p>
-      <img src='burningmonk.jpg' className='monk' alt='monk' />
+      <div className='image-container'>
+        <img src='burningmonk.jpg' className='image' alt='monk' />
+        <div className='overlay'>
+          <div className='caption'>
+            A monk self-immolates in protest. (Vietnam - May 8, 1963)
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

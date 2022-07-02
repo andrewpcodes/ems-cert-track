@@ -1,5 +1,5 @@
 import '../stylePages.css';
-import icon from '../../test.svg';
+import icon from '../../pagetitle-icon.svg';
 import Button from "../../components/styledComponents/Button";
 import ListItem from "../../components/styledComponents/ListItem";
 

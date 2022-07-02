@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import '../../stylePages.css';
-import icon from '../../../test.svg';
+import icon from '../../../pagetitle-icon.svg';
 
 const About = () => {
   let navigate = useNavigate();

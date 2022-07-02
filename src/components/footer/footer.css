@@ -5,16 +5,18 @@
     background-color: darkslategrey;
     text-align: left;
     font-family: 'Gill Sans';
+    flex: 1, 1, auto;
 }
 
 .footer-text {
+    text-decoration: none;
     padding-left: 10px;
     font-size: 16px;
-    color: black;
-} 
+    color: burlywood;
+}
 
 .footer-text:hover {
-    color: burlywood;
+    color: cadetblue;
 }
 
 .footer-icon {

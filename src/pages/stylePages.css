@@ -1,6 +1,7 @@
 .page {
     padding-bottom: 2em;
     padding-left: 2em;
+    padding-right: 2em;
 }
 
 .pageTitle {
@@ -42,12 +43,64 @@
     column-count: 2;
 }
 
-.photo {
-    margin-left: 2em;
-    max-width: 100%;
+.things {    
+    columns: 2;
+}
+
+/*
+    Use the following format to style images with caption overlays
+    If you want images of different sizes on different pages, specify 
+    in the className, e.g. 'image-container-large'
+    Or call it whatever you want and make a new tag below
+    
+      <div className='image-container'>
+        <img src='IMAGE_NAME' className='image' alt='monk' />
+        <div className='overlay'>
+          <div className='caption'>
+            INSERT_CAPTION
+          </div>
+        </div>
+      </div>
+*/
+
+.image-container {
+    position: relative;
+    width: 50%;
+}
+
+.image-container-large {
+    position: relative;
+    width: 100%;
+}
+
+.image-container-small {
+    position: relative;
+    width: 25%;
+}
+
+.image {
+    display: block;
+    width: 100%;
     height: auto;
 }
 
-.things {    
-    columns: 2;
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    opacity: 0;
+    transition: 0.5s ease;
+    background-color: black;
+}
+
+.image-container:hover .overlay {
+    opacity: 0.5;
+}
+
+.caption {
+    color: white;
+    position: relative;
+    padding: 0.2em;
 }
