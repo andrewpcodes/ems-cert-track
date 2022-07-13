@@ -48,7 +48,7 @@ function Registration() {
   async function confirmSignUp(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      await Auth.confirmSignUp(email, code);
+      await Auth.confirmSignUp(username, code);
       navigate("/login");
       return true;
     } catch (error) {
@@ -200,7 +200,7 @@ function Registration() {
               />
               {alert ? (
                 <Alert severity="error">
-                  Improper registration info entered
+                  Improper account confirmation information entered
                 </Alert>
               ) : null}
               <Button
