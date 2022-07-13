@@ -46,7 +46,7 @@ const Registration = ()  => {
   async function confirmSignUp(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      await Auth.confirmSignUp(email, code);
+      await Auth.confirmSignUp(username, code);
       navigate("/login");
       return true;
     } catch (error) {
@@ -141,7 +141,19 @@ const Registration = ()  => {
                     Already have an account? Sign in
                   </Link>
                 </Grid>
-              </Grid>
+                          </Grid>
+                          <Grid container>
+                              <Grid item xs></Grid>
+                              <Grid item>
+                                  <Link
+                                      component="button"
+                                      onClick={() => setVisible(true)}
+                                      variant="body2"
+                                  >
+                                      Confirm with a unique access code
+                                  </Link>
+                              </Grid>
+                          </Grid>
             </Box>
           </Box>
         </Container>
@@ -186,7 +198,7 @@ const Registration = ()  => {
               />
               {alert ? (
                 <Alert severity="error">
-                  Improper registration info entered
+                  Improper account confirmation information entered
                 </Alert>
               ) : null}
               <Button
