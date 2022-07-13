@@ -14,15 +14,13 @@ import {
   Link,
 } from "@mui/material";
 
-function Registration() {
+const Registration = ()  => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [code, setCode] = useState("");
   const [visible, setVisible] = useState(false);
   let navigate = useNavigate();
-  var form1 = document.getElementById("FirstWindow");
-  var form2 = document.getElementById("SecondWindow");
   const [alert, setAlert] = useState(false);
 
   async function signUp(event: React.FormEvent<HTMLFormElement>) {

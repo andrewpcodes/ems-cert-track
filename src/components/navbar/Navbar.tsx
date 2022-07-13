@@ -1,6 +1,7 @@
 ﻿import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Auth } from "aws-amplify";
+import { AppBar, Toolbar, Button, Typography } from "@mui/material";
 
 function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -11,6 +12,10 @@ function Navbar() {
       isLoggedIn();
     }
   });
+
+  const redirect = (to: string) => {
+    navigate(to);
+  };
 
   const isLoggedIn = async () => {
     if (await Auth.currentUserInfo()) {
@@ -28,41 +33,74 @@ function Navbar() {
   };
 
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/checklist">Checklist</Link>
-      </li>
-      <li>
-        <Link to="/recertification">Recertification</Link>
-      </li>
-      <li>
-        <Link to="/courses">Courses</Link>
-      </li>
-      {!loggedIn ? (
-        <>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Register Account</Link>
-          </li>
-        </>
-      ) : (
-        <li>
-          <Link
-            to="/"
+    <AppBar>
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          EMS-Cert-Track
+        </Typography>
+        <Button
+          color="inherit"
+          onClick={() => {
+            redirect("/");
+          }}
+        >
+          Home
+        </Button>
+        <Button
+          color="inherit"
+          onClick={() => {
+            redirect("/checklist");
+          }}
+        >
+          Checklist
+        </Button>
+        <Button
+          color="inherit"
+          onClick={() => {
+            redirect("/recertification");
+          }}
+        >
+          Recertification
+        </Button>
+        <Button
+          color="inherit"
+          onClick={() => {
+            redirect("/Courses");
+          }}
+        >
+          Courses
+        </Button>
+        {!loggedIn ? (
+          <>
+            <Button
+              color="inherit"
+              onClick={() => {
+                redirect("/login");
+              }}
+            >
+              Login
+            </Button>
+            <Button
+              color="inherit"
+              onClick={() => {
+                redirect("/registration");
+              }}
+            >
+              Registration
+            </Button>
+          </>
+        ) : (
+          <Button
+            color="inherit"
             onClick={() => {
               signOut();
             }}
           >
             Sign Out
-          </Link>
-        </li>
-      )}
-    </ul>
+          </Button>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
 

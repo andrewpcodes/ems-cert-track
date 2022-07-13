@@ -1,7 +1,4 @@
-import { Link } from "react-router-dom";
-import { setFlagsFromString } from "v8";
-import "./stylesheet.css";
-import recert from "./public/recert.jpg";
+import recertLogo from "../../assets/recert.jpg";
 
 function Recertification() {
   return (
@@ -10,7 +7,7 @@ function Recertification() {
         <h1> Starting your recertification</h1>
       </header>
       <div className="landing-description-container">
-        <img src="recert.jpg" />
+        <img src={recertLogo} alt="Recertification" />
       </div>
       <div className="landing-images-container">
         <div className="row">
