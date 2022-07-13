@@ -143,7 +143,19 @@ function Registration() {
                     Already have an account? Sign in
                   </Link>
                 </Grid>
-              </Grid>
+                          </Grid>
+                          <Grid container>
+                              <Grid item xs></Grid>
+                              <Grid item>
+                                  <Link
+                                      component="button"
+                                      onClick={() => setVisible(true)}
+                                      variant="body2"
+                                  >
+                                      Confirm with a unique access code
+                                  </Link>
+                              </Grid>
+                          </Grid>
             </Box>
           </Box>
         </Container>
