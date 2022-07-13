@@ -83,7 +83,7 @@ function Navbar() {
             <Button
               color="inherit"
               onClick={() => {
-                redirect("/registration");
+                redirect("/register");
               }}
             >
               Registration
