@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { API, Auth, graphqlOperation } from "aws-amplify";
-import ChecklistItem from "../../components/checklist-item/Checklist-Item";
+import ChecklistItem from "./checklist-item/Checklist-Item";
 import { listChecklists } from "../../graphql/queries";
 import { createChecklist } from "../../graphql/mutations";
 import { GraphQLQuery } from "@aws-amplify/api";
