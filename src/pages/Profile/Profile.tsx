@@ -27,16 +27,7 @@ function Profile() {
 
 
     return (
-        <Container component="main">
-            <CssBaseline />
-            <Box
-                sx={{
-                    marginTop: 16,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "left",
-                }}
-            >    
+        
     <div>
         <div>
               <input type="file" onChange={(e) => setFileData(e.target!.files![0])} />
@@ -45,8 +36,7 @@ function Profile() {
             <button onClick={uploadFile}></button>
         </div>
     </div>           
-     </Box>
-     </Container>
+    
 
     );
 }
