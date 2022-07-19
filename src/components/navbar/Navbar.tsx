@@ -89,7 +89,8 @@ function Navbar() {
               Registration
             </Button>
           </>
-        ) : (
+              ) : (
+                      <>
           <Button
             color="inherit"
             onClick={() => {
@@ -97,7 +98,18 @@ function Navbar() {
             }}
           >
             Sign Out
-          </Button>
+                      </Button>
+
+
+                          <Button
+                              color="inherit"
+                              onClick={() => {
+                                  redirect("/profile");
+                              }}
+                          >
+                              Profile
+                          </Button>
+        </>
         )}
       </Toolbar>
     </AppBar>
