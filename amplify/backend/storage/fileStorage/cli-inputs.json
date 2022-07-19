@@ -1,0 +1,14 @@
+{
+  "resourceName": "fileStorage",
+  "policyUUID": "545c12b6",
+  "bucketName": "emscerttracka87124a349994ffebd18ef91241b912a",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
