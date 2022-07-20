@@ -1,5 +1,5 @@
-﻿import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { AppBar, Toolbar, Button, Typography } from "@mui/material";
 
@@ -89,27 +89,26 @@ function Navbar() {
               Registration
             </Button>
           </>
-              ) : (
-                      <>
-          <Button
-            color="inherit"
-            onClick={() => {
-              signOut();
-            }}
-          >
-            Sign Out
-                      </Button>
+        ) : (
+          <>
+            <Button
+              color="inherit"
+              onClick={() => {
+                signOut();
+              }}
+            >
+              Sign Out
+            </Button>
 
-
-                          <Button
-                              color="inherit"
-                              onClick={() => {
-                                  redirect("/profile");
-                              }}
-                          >
-                              Profile
-                          </Button>
-        </>
+            <Button
+              color="inherit"
+              onClick={() => {
+                redirect("/profile");
+              }}
+            >
+              Profile
+            </Button>
+          </>
         )}
       </Toolbar>
     </AppBar>

@@ -8,6 +8,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface checklistProps {
   id: string;
+  userID: string;
   name: string;
   description: string;
   courseNumber: number;
@@ -23,6 +24,7 @@ const ChecklistItem = (props: checklistProps) => {
         id={props.id}
       >
         <Typography>{props.name}</Typography>
+        <Typography>{props.userID}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography>Description: {props.description}</Typography>
