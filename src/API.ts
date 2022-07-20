@@ -2,27 +2,28 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateUserInput = {
+export type CreateSiteContentInput = {
   id?: string | null,
-  emsID?: string | null,
-  firstName?: string | null,
-  lastName?: string | null,
-  email?: string | null,
-  stateCode?: string | null,
-  password?: string | null,
+  markdown?: string | null,
+  page?: Pages | null,
   _version?: number | null,
 };
 
-export type ModelUserConditionInput = {
-  emsID?: ModelStringInput | null,
-  firstName?: ModelStringInput | null,
-  lastName?: ModelStringInput | null,
-  email?: ModelStringInput | null,
-  stateCode?: ModelStringInput | null,
-  password?: ModelStringInput | null,
-  and?: Array< ModelUserConditionInput | null > | null,
-  or?: Array< ModelUserConditionInput | null > | null,
-  not?: ModelUserConditionInput | null,
+export enum Pages {
+  RECERTIFICATION = "RECERTIFICATION",
+  HOME = "HOME",
+  CHECKLIST = "CHECKLIST",
+  COURSES = "COURSES",
+  PROFILE = "PROFILE",
+}
+
+
+export type ModelSiteContentConditionInput = {
+  markdown?: ModelStringInput | null,
+  page?: ModelPagesInput | null,
+  and?: Array< ModelSiteContentConditionInput | null > | null,
+  or?: Array< ModelSiteContentConditionInput | null > | null,
+  not?: ModelSiteContentConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -63,6 +64,58 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
+};
+
+export type ModelPagesInput = {
+  eq?: Pages | null,
+  ne?: Pages | null,
+};
+
+export type SiteContent = {
+  __typename: "SiteContent",
+  id: string,
+  markdown?: string | null,
+  page?: Pages | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type UpdateSiteContentInput = {
+  id: string,
+  markdown?: string | null,
+  page?: Pages | null,
+  _version?: number | null,
+};
+
+export type DeleteSiteContentInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateUserInput = {
+  id?: string | null,
+  emsID?: string | null,
+  firstName?: string | null,
+  lastName?: string | null,
+  email?: string | null,
+  stateCode?: string | null,
+  password?: string | null,
+  _version?: number | null,
+};
+
+export type ModelUserConditionInput = {
+  emsID?: ModelStringInput | null,
+  firstName?: ModelStringInput | null,
+  lastName?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  stateCode?: ModelStringInput | null,
+  password?: ModelStringInput | null,
+  and?: Array< ModelUserConditionInput | null > | null,
+  or?: Array< ModelUserConditionInput | null > | null,
+  not?: ModelUserConditionInput | null,
 };
 
 export type User = {
@@ -207,6 +260,22 @@ export type DeleteChecklistInput = {
   _version?: number | null,
 };
 
+export type ModelSiteContentFilterInput = {
+  id?: ModelIDInput | null,
+  markdown?: ModelStringInput | null,
+  page?: ModelPagesInput | null,
+  and?: Array< ModelSiteContentFilterInput | null > | null,
+  or?: Array< ModelSiteContentFilterInput | null > | null,
+  not?: ModelSiteContentFilterInput | null,
+};
+
+export type ModelSiteContentConnection = {
+  __typename: "ModelSiteContentConnection",
+  items:  Array<SiteContent | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
   emsID?: ModelStringInput | null,
@@ -241,6 +310,63 @@ export type ModelChecklistFilterInput = {
   and?: Array< ModelChecklistFilterInput | null > | null,
   or?: Array< ModelChecklistFilterInput | null > | null,
   not?: ModelChecklistFilterInput | null,
+};
+
+export type CreateSiteContentMutationVariables = {
+  input: CreateSiteContentInput,
+  condition?: ModelSiteContentConditionInput | null,
+};
+
+export type CreateSiteContentMutation = {
+  createSiteContent?:  {
+    __typename: "SiteContent",
+    id: string,
+    markdown?: string | null,
+    page?: Pages | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateSiteContentMutationVariables = {
+  input: UpdateSiteContentInput,
+  condition?: ModelSiteContentConditionInput | null,
+};
+
+export type UpdateSiteContentMutation = {
+  updateSiteContent?:  {
+    __typename: "SiteContent",
+    id: string,
+    markdown?: string | null,
+    page?: Pages | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteSiteContentMutationVariables = {
+  input: DeleteSiteContentInput,
+  condition?: ModelSiteContentConditionInput | null,
+};
+
+export type DeleteSiteContentMutation = {
+  deleteSiteContent?:  {
+    __typename: "SiteContent",
+    id: string,
+    markdown?: string | null,
+    page?: Pages | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
 };
 
 export type CreateUserMutationVariables = {
@@ -459,6 +585,75 @@ export type DeleteChecklistMutation = {
   } | null,
 };
 
+export type GetSiteContentQueryVariables = {
+  id: string,
+};
+
+export type GetSiteContentQuery = {
+  getSiteContent?:  {
+    __typename: "SiteContent",
+    id: string,
+    markdown?: string | null,
+    page?: Pages | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListSiteContentsQueryVariables = {
+  filter?: ModelSiteContentFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListSiteContentsQuery = {
+  listSiteContents?:  {
+    __typename: "ModelSiteContentConnection",
+    items:  Array< {
+      __typename: "SiteContent",
+      id: string,
+      markdown?: string | null,
+      page?: Pages | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncSiteContentsQueryVariables = {
+  filter?: ModelSiteContentFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncSiteContentsQuery = {
+  syncSiteContents?:  {
+    __typename: "ModelSiteContentConnection",
+    items:  Array< {
+      __typename: "SiteContent",
+      id: string,
+      markdown?: string | null,
+      page?: Pages | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
 export type GetUserQueryVariables = {
   id: string,
 };
@@ -660,6 +855,48 @@ export type SyncChecklistsQuery = {
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateSiteContentSubscription = {
+  onCreateSiteContent?:  {
+    __typename: "SiteContent",
+    id: string,
+    markdown?: string | null,
+    page?: Pages | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnUpdateSiteContentSubscription = {
+  onUpdateSiteContent?:  {
+    __typename: "SiteContent",
+    id: string,
+    markdown?: string | null,
+    page?: Pages | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeleteSiteContentSubscription = {
+  onDeleteSiteContent?:  {
+    __typename: "SiteContent",
+    id: string,
+    markdown?: string | null,
+    page?: Pages | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 

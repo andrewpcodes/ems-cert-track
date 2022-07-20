@@ -2,6 +2,57 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createSiteContent = /* GraphQL */ `
+  mutation CreateSiteContent(
+    $input: CreateSiteContentInput!
+    $condition: ModelSiteContentConditionInput
+  ) {
+    createSiteContent(input: $input, condition: $condition) {
+      id
+      markdown
+      page
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateSiteContent = /* GraphQL */ `
+  mutation UpdateSiteContent(
+    $input: UpdateSiteContentInput!
+    $condition: ModelSiteContentConditionInput
+  ) {
+    updateSiteContent(input: $input, condition: $condition) {
+      id
+      markdown
+      page
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteSiteContent = /* GraphQL */ `
+  mutation DeleteSiteContent(
+    $input: DeleteSiteContentInput!
+    $condition: ModelSiteContentConditionInput
+  ) {
+    deleteSiteContent(input: $input, condition: $condition) {
+      id
+      markdown
+      page
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!

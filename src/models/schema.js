@@ -1,5 +1,73 @@
 export const schema = {
     "models": {
+        "SiteContent": {
+            "name": "SiteContent",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "markdown": {
+                    "name": "markdown",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "page": {
+                    "name": "page",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Pages"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "SiteContents",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "User": {
             "name": "User",
             "fields": {
@@ -244,7 +312,18 @@ export const schema = {
             ]
         }
     },
-    "enums": {},
+    "enums": {
+        "Pages": {
+            "name": "Pages",
+            "values": [
+                "RECERTIFICATION",
+                "HOME",
+                "CHECKLIST",
+                "COURSES",
+                "PROFILE"
+            ]
+        }
+    },
     "nonModels": {},
-    "version": "514702c76e6b12b6a4aaf1a6c845879b"
+    "version": "833fdf0705a3514dd2042276ed5a7a55"
 };

@@ -2,6 +2,70 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getSiteContent = /* GraphQL */ `
+  query GetSiteContent($id: ID!) {
+    getSiteContent(id: $id) {
+      id
+      markdown
+      page
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listSiteContents = /* GraphQL */ `
+  query ListSiteContents(
+    $filter: ModelSiteContentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSiteContents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        markdown
+        page
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncSiteContents = /* GraphQL */ `
+  query SyncSiteContents(
+    $filter: ModelSiteContentFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncSiteContents(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        markdown
+        page
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
