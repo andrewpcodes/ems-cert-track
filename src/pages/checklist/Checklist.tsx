@@ -1,6 +1,5 @@
 import {
   Box,
-  Chip,
   Container,
   CssBaseline,
   Divider,
@@ -8,13 +7,10 @@ import {
   Button,
   TextField,
   Stack,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React, { useEffect, useState } from "react";
 import { API, Auth, graphqlOperation } from "aws-amplify";
+import ChecklistItem from "./checklist-item/Checklist-Item";
 import { listChecklists } from "../../graphql/queries";
 import { createChecklist } from "../../graphql/mutations";
 import { GraphQLQuery } from "@aws-amplify/api";
@@ -96,7 +92,7 @@ function UserChecklist() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 16,
             display: "flex",
             flexDirection: "column",
             alignItems: "left",
@@ -108,20 +104,13 @@ function UserChecklist() {
           </Typography>
           <Divider className="divider" />
           {userChecklist.map((item: Checklist) => (
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls={`${item.id}-content`}
-                id={item.id}
-              >
-                <Typography>{item.name}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>Description: {item.description}</Typography>
-                <Typography>Hours Completed: {item.hours}</Typography>
-                <Typography>Course Number: {item.courseNumber}</Typography>
-              </AccordionDetails>
-            </Accordion>
+            <ChecklistItem
+              id={item.id}
+              name={item.name || ""}
+              description={item.description || ""}
+              courseNumber={item.courseNumber || 0}
+              hours={item.hours || 0}
+            />
           ))}
         </Box>
         {showModal && loggedIn ? (

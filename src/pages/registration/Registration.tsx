@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Auth } from "aws-amplify";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,15 +14,13 @@ import {
   Link,
 } from "@mui/material";
 
-function Registration() {
+const Registration = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [code, setCode] = useState("");
   const [visible, setVisible] = useState(false);
   let navigate = useNavigate();
-  var form1 = document.getElementById("FirstWindow");
-  var form2 = document.getElementById("SecondWindow");
   const [alert, setAlert] = useState(false);
 
   async function signUp(event: React.FormEvent<HTMLFormElement>) {
@@ -48,7 +46,7 @@ function Registration() {
   async function confirmSignUp(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      await Auth.confirmSignUp(email, code);
+      await Auth.confirmSignUp(username, code);
       navigate("/login");
       return true;
     } catch (error) {
@@ -58,34 +56,13 @@ function Registration() {
   }
 
   return (
-    /*
-        <div className="Registration-window">
-            
-      <h2> Create an account </h2>
-      <h6> Already a user? Log in here </h6>
-            {!visible &&
-                <form id="FirstWindow">
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Email Address" />
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                    <input type="submit" onClick={signUp} placeholder="Sign Up" />
-                </form>
-            }
-            { visible &&
-                <form id="SecondWindow">
-                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" />
-                    <input type="text" value={code} onChange={(e) => setCode(e.target.value)} placeholder="Code" />
-                    <input type="submit" onClick={confirmSignUp} placeholder="Register code"/>
-                </form>
-            }    
-        </div>
-    */
-    <div>
+    <>
       {!visible && (
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: 16,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -144,6 +121,18 @@ function Registration() {
                   </Link>
                 </Grid>
               </Grid>
+              <Grid container>
+                <Grid item xs></Grid>
+                <Grid item>
+                  <Link
+                    component="button"
+                    onClick={() => setVisible(true)}
+                    variant="body2"
+                  >
+                    Confirm with a unique access code
+                  </Link>
+                </Grid>
+              </Grid>
             </Box>
           </Box>
         </Container>
@@ -154,7 +143,7 @@ function Registration() {
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: 16,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -188,7 +177,7 @@ function Registration() {
               />
               {alert ? (
                 <Alert severity="error">
-                  Improper registration info entered
+                  Improper account confirmation information entered
                 </Alert>
               ) : null}
               <Button
@@ -215,8 +204,8 @@ function Registration() {
           </Box>
         </Container>
       )}
-    </div>
+    </>
   );
-}
+};
 
 export default Registration;
