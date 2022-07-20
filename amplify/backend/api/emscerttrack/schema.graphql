@@ -1,4 +1,18 @@
-type User @model @auth(rules: [{ allow: public }]) {
+enum Pages {
+  RECERTIFICATION
+  HOME
+  CHECKLIST
+  COURSES
+  PROFILE
+}
+
+type SiteContent @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  markdown : String
+  page: Pages
+}
+
+type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   emsID: String
   firstName: String
@@ -9,18 +23,7 @@ type User @model @auth(rules: [{ allow: public }]) {
   Checklist: [Checklist] @hasMany(indexName: "byUser", fields: ["id"])
 }
 
-type Checklist
-  @model
-  @auth(
-    rules: [
-      {
-        allow: owner
-        operations: [create, update, delete]
-        ownerField: "userID"
-      }
-      { allow: public }
-    ]
-  ) {
+type Checklist @model @auth(rules: [{allow: owner, operations: [create, update, delete], ownerField: "userID"}, {allow: public}]) {
   id: ID!
   userID: ID! @index(name: "byUser")
   name: String
@@ -32,3 +35,4 @@ type Checklist
   hours: Int
   category: Int
 }
+ 

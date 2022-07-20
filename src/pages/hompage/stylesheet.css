@@ -5,7 +5,9 @@ body {
     height: 100%;
 }
 
-
+main {
+    color: black;
+}
 
 
 /* General Styles */
