@@ -63,8 +63,12 @@ function UserChecklist() {
   const navigate = useNavigate();
 
   const isLoggedIn = async () => {
-    if (Auth.Credentials) {
+    try {
+      await Auth.currentUserInfo();
       setUser(await Auth.currentUserInfo());
+      return true;
+    } catch {
+      return false;
     }
   };
 
@@ -84,7 +88,7 @@ function UserChecklist() {
     } else {
       isLoggedIn();
     }
-  }, [user, checklist]);
+  }, [user]);
 
   const create = () => {
     setShowModal(!showModal);

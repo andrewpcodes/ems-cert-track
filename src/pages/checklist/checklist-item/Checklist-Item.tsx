@@ -24,7 +24,6 @@ const ChecklistItem = (props: checklistProps) => {
         id={props.id}
       >
         <Typography>{props.name}</Typography>
-        <Typography>{props.userID}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography>Description: {props.description}</Typography>

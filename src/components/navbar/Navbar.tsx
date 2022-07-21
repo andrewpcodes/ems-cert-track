@@ -4,23 +4,33 @@ import { Auth } from "aws-amplify";
 import { AppBar, Toolbar, Button, Typography } from "@mui/material";
 
 function Navbar() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState("");
   const navigate = useNavigate();
 
+  //Use Effect for collection the User
   useEffect(() => {
-    if (!loggedIn) {
+    const data = localStorage.getItem("user");
+    if (data) setUser(data);
+  }, [user]);
+
+  useEffect(() => {
+    const isLoggedIn = async () => {
+      try {
+        await Auth.currentUserInfo();
+        setUser(await Auth.currentUserInfo());
+        localStorage.setItem("user", user || "");
+        return true;
+      } catch {
+        return false;
+      }
+    };
+    if (!user) {
       isLoggedIn();
     }
-  });
+  }, []);
 
   const redirect = (to: string) => {
     navigate(to);
-  };
-
-  const isLoggedIn = async () => {
-    if (await Auth.currentUserInfo()) {
-      setLoggedIn(true);
-    }
   };
 
   const signOut = async () => {
@@ -70,7 +80,7 @@ function Navbar() {
         >
           Courses
         </Button>
-        {!loggedIn ? (
+        {!user ? (
           <>
             <Button
               color="inherit"
