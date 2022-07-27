@@ -28,7 +28,6 @@ function Login() {
 
   async function signIn(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     try {
       await Auth.signIn(email, password);
       navigate("/");

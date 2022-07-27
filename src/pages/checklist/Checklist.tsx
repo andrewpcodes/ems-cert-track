@@ -5,18 +5,16 @@ import {
   Divider,
   Typography,
   Button,
-  TextField,
-  Stack,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { API, Auth } from "aws-amplify";
-import ChecklistItem from "./checklist-item/Checklist-Item";
 import { listChecklists } from "../../graphql/queries";
 import { createChecklist } from "../../graphql/mutations";
 import { ListChecklistsQuery, User } from "../../API";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { useNavigate } from "react-router-dom";
 import callGraphQL from "../../utils/callGraphQL";
+import ChecklistSection from "./checklist-section/Checklist-Section";
 
 interface IChecklistItem {
   id: string;
@@ -56,7 +54,6 @@ const fetchChecklist = async (id: string) => {
 };
 
 function UserChecklist() {
-  const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState<User>();
   const [checklist, setChecklist] = useState<IChecklistItem[]>();
 
@@ -64,11 +61,10 @@ function UserChecklist() {
 
   const isLoggedIn = async () => {
     try {
-      await Auth.currentUserInfo();
-      setUser(await Auth.currentUserInfo());
-      return true;
-    } catch {
-      return false;
+      const cUser = await Auth.currentUserInfo();
+      setUser(cUser);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -85,14 +81,10 @@ function UserChecklist() {
     };
     if (user && !checklist) {
       getChecklist(user.id);
-    } else {
+    } else if (!user) {
       isLoggedIn();
     }
   }, [user]);
-
-  const create = () => {
-    setShowModal(!showModal);
-  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -104,6 +96,7 @@ function UserChecklist() {
       description: data.get("description"),
       courseNumber: data.get("courseNumber"),
       hours: data.get("hours"),
+      category: data.get("category"),
     };
 
     await API.graphql({
@@ -112,84 +105,69 @@ function UserChecklist() {
     });
 
     navigate(0);
-    setShowModal(false);
   };
 
   return (
     <>
-      {user ? (
-        <Container component="main">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 16,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "left",
-            }}
-          >
-            <Typography component="h1" variant="h3">
-              Checklist
-              <Button onClick={create}>Create</Button>
-            </Typography>
-            <Divider className="divider" />
-            {checklist?.map((item: IChecklistItem) => (
-              <ChecklistItem
-                key={item.id}
-                id={item.id}
-                userID={item.userID || ""}
-                name={item.name || ""}
-                description={item.description || ""}
-                courseNumber={item.courseNumber || 0}
-                hours={item.hours || 0}
+      <Container component="main">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 16,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "left",
+          }}
+        >
+          {user ? (
+            <>
+              <Typography component="h1" variant="h3">
+                Checklist
+              </Typography>
+              <Divider className="divider" />
+              <ChecklistSection
+                title="Airway/Respiration/Ventilation"
+                items={checklist?.filter((item) => item.category === 1)}
+                handleSubmit={handleSubmit}
+                category="1"
               />
-            ))}
-          </Box>
-          {showModal ? (
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 1 }}
+              <ChecklistSection
+                title="Trauma"
+                items={checklist?.filter((item) => item.category === 2)}
+                handleSubmit={handleSubmit}
+                category="2"
+              />
+              <ChecklistSection
+                title="Medical"
+                items={checklist?.filter((item) => item.category === 3)}
+                handleSubmit={handleSubmit}
+                category="3"
+              />
+              <ChecklistSection
+                title="Operations"
+                items={checklist?.filter((item) => item.category === 4)}
+                handleSubmit={handleSubmit}
+                category="4"
+              />
+              <ChecklistSection
+                title="Cardiovascular"
+                items={checklist?.filter((item) => item.category === 5)}
+                handleSubmit={handleSubmit}
+                category="5"
+              />
+            </>
+          ) : (
+            <Button
+              variant="contained"
+              onClick={() => {
+                navigate("/login");
+              }}
             >
-              <Stack spacing={3}>
-                <TextField
-                  margin="normal"
-                  required
-                  id="name"
-                  label="Name"
-                  name="name"
-                  autoFocus
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  name="description"
-                  label="Description"
-                  id="description"
-                />
-                <TextField
-                  margin="normal"
-                  name="courseNumber"
-                  label="Course Number"
-                  id="courseNumber"
-                />
-                <TextField
-                  margin="normal"
-                  name="hours"
-                  label="Hours Completed"
-                  id="hours"
-                />
-                <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
-                  Submit
-                </Button>
-              </Stack>
-            </Box>
-          ) : null}
-        </Container>
-      ) : (
-        <p> Please Sign In</p>
-      )}
+              Sign In
+            </Button>
+          )}
+        </Box>
+      </Container>
     </>
   );
 }

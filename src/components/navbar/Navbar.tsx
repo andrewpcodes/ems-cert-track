@@ -7,27 +7,17 @@ function Navbar() {
   const [user, setUser] = useState("");
   const navigate = useNavigate();
 
-  //Use Effect for collection the User
-  useEffect(() => {
-    const data = localStorage.getItem("user");
-    if (data) setUser(data);
-  }, [user]);
-
   useEffect(() => {
     const isLoggedIn = async () => {
       try {
-        await Auth.currentUserInfo();
-        setUser(await Auth.currentUserInfo());
-        localStorage.setItem("user", user || "");
-        return true;
-      } catch {
-        return false;
+        const cUser = await Auth.currentUserInfo();
+        setUser(cUser);
+      } catch (e) {
+        console.log("Error: ", e);
       }
     };
-    if (!user) {
-      isLoggedIn();
-    }
-  }, []);
+    isLoggedIn();
+  }, [user]);
 
   const redirect = (to: string) => {
     navigate(to);
