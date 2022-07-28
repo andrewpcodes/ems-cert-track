@@ -1,26 +1,26 @@
-﻿import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { AppBar, Toolbar, Button, Typography } from "@mui/material";
 
 function Navbar() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loggedIn) {
-      isLoggedIn();
-    }
-  });
+    const isLoggedIn = async () => {
+      try {
+        const cUser = await Auth.currentUserInfo();
+        setUser(cUser);
+      } catch (e) {
+        console.log("Error: ", e);
+      }
+    };
+    isLoggedIn();
+  }, [user]);
 
   const redirect = (to: string) => {
     navigate(to);
-  };
-
-  const isLoggedIn = async () => {
-    if (await Auth.currentUserInfo()) {
-      setLoggedIn(true);
-    }
   };
 
   const signOut = async () => {
@@ -70,7 +70,7 @@ function Navbar() {
         >
           Courses
         </Button>
-        {!loggedIn ? (
+        {!user ? (
           <>
             <Button
               color="inherit"
@@ -89,27 +89,26 @@ function Navbar() {
               Registration
             </Button>
           </>
-              ) : (
-                      <>
-          <Button
-            color="inherit"
-            onClick={() => {
-              signOut();
-            }}
-          >
-            Sign Out
-                      </Button>
+        ) : (
+          <>
+            <Button
+              color="inherit"
+              onClick={() => {
+                signOut();
+              }}
+            >
+              Sign Out
+            </Button>
 
-
-                          <Button
-                              color="inherit"
-                              onClick={() => {
-                                  redirect("/profile");
-                              }}
-                          >
-                              Profile
-                          </Button>
-        </>
+            <Button
+              color="inherit"
+              onClick={() => {
+                redirect("/profile");
+              }}
+            >
+              Profile
+            </Button>
+          </>
         )}
       </Toolbar>
     </AppBar>

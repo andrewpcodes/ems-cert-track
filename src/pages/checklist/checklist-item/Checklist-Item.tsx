@@ -8,6 +8,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface checklistProps {
   id: string;
+  userID: string;
   name: string;
   description: string;
   courseNumber: number;
