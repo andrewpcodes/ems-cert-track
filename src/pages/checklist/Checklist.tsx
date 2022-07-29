@@ -5,16 +5,20 @@ import {
   Divider,
   Typography,
   Button,
+  LinearProgress,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { API, Auth } from "aws-amplify";
 import { listChecklists } from "../../graphql/queries";
 import { createChecklist } from "../../graphql/mutations";
-import { ListChecklistsQuery, User } from "../../API";
+import { Checklist, ListChecklistsQuery, User } from "../../API";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { useNavigate } from "react-router-dom";
 import callGraphQL from "../../utils/callGraphQL";
 import ChecklistSection from "./checklist-section/Checklist-Section";
+import ViewProgress from "./ViewProgress";
+import ProgressBar from 'react-bootstrap/ProgressBar'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface IChecklistItem {
   id: string;
@@ -86,6 +90,11 @@ function UserChecklist() {
     }
   }, [user]);
 
+  let totalHours = 0;
+  checklist?.map((item: IChecklistItem) => {
+    return (totalHours += item.hours);
+  });
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -168,6 +177,7 @@ function UserChecklist() {
           )}
         </Box>
       </Container>
+          <LinearProgress variant="determinate" value={(totalHours/40)*100} />
     </>
   );
 }
