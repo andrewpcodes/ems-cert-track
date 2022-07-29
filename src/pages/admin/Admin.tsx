@@ -1,17 +1,12 @@
 import {
   Box,
-  Button,
   CssBaseline,
   Divider,
   IconButton,
   Typography,
 } from "@mui/material";
 import sendEmail from "../../utils/sendEmail";
-import { GraphQLResult } from "@aws-amplify/api-graphql";
-import { listUsers } from "../../graphql/queries";
-import callGraphQL from "../../utils/callGraphQL";
 import { useEffect, useState } from "react";
-import { Label } from "@mui/icons-material";
 import { Container } from "@mui/system";
 import { API, Auth } from "aws-amplify";
 import EmailIcon from "@mui/icons-material/Email";
