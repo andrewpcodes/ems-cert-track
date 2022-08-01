@@ -16,8 +16,10 @@ function Navbar() {
         console.log("Error: ", e);
       }
     };
-    isLoggedIn();
-  }, [user]);
+    if (!user) {
+      isLoggedIn();
+    }
+  });
 
   const redirect = (to: string) => {
     navigate(to);

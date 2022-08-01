@@ -12,6 +12,7 @@ import Recertification from "./pages/rectification-info/Rectification";
 import Login from "./pages/login/Login";
 import Courses from "./pages/courses/Courses";
 import Profile from "./pages/Profile/Profile";
+import Admin from "./pages/admin/Admin";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -27,8 +28,9 @@ root.render(
         <Route path="register" element={<Registration />} />
         <Route path="recertification" element={<Recertification />} />
         <Route path="login" element={<Login />} />
-                <Route path="courses" element={<Courses />} />
-                <Route path="profile" element={<Profile /> } />
+        <Route path="courses" element={<Courses />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
