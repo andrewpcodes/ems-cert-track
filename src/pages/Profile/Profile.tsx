@@ -31,6 +31,15 @@ function Profile() {
     var [lastName, setLastName] = useState("Labrie");
     var [email, setEmail] = useState("labried2@wit.edu");
     var [number, setNumber] = useState("(123)456-7891");
+    var [occupation, setOccupation] = useState("");
+    var [city, setCity] = useState("");
+    var [certifiedSince, setCertifiedSince] = useState("");
+    var [yearsCertified, setYearsCertified] = useState("");
+
+    var [formOccupation, setFormOccupation] = useState("");
+    var [formCity, setFormCity] = useState("");
+    var [formCertifiedSince, setFormCertifiedSince] = useState("");
+    var [formYearsCertified, setFormYearsCertified] = useState("")
     
 
     async function loadProfilePicture() {
@@ -38,7 +47,22 @@ function Profile() {
             download: false,
             level: "private"
         });
-        setProfileLink(profilePicture);
+        const setUserStuff = await Auth.currentAuthenticatedUser();
+        try {
+            const loadUser = await Auth.currentUserInfo();
+            const loadCity = loadUser.attributes["custom:city"]
+            const loadYearsCertified = loadUser.attributes["custom:years-certified"];
+            const loadCertifiedSince = loadUser.attributes["custom:certified-since"];
+            const loadOccupation = loadUser.attributes["custom:occupation"];
+            setYearsCertified(loadYearsCertified);
+            setCertifiedSince(loadCertifiedSince);
+            setOccupation(loadOccupation);
+            setCity(loadCity);
+            setProfileLink(profilePicture);
+        }
+        catch (error) {
+            console.log(error);
+        }
         
 
     };
@@ -120,15 +144,33 @@ function Profile() {
     window.open(result);
     };
 
-    const editInformation = async () => {
+    const editInformation = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         const user = await Auth.currentAuthenticatedUser();
-        await Auth.updateUserAttributes(user, {
-            given_name: firstName,
-            family_name: lastName,
-            email: email,
-            phone_number: number
+        try {
+            if (formCertifiedSince == "") {
+                formCertifiedSince = certifiedSince;
+            }
+            if (formYearsCertified == "") {
+                formYearsCertified = yearsCertified;
+            }
+            if (formOccupation == "") {
+                formOccupation = occupation;
+            }
+            if (formCity == "") {
+                formCity = city;
+            }
 
-        });
+            const result = await Auth.updateUserAttributes(user, {
+                'custom:certified-since': formCertifiedSince,
+                'custom:years-certified': formYearsCertified,
+                'custom:occupation': formOccupation,
+                'custom:city': formCity
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }
     };
 
   return (
@@ -156,13 +198,13 @@ function Profile() {
                               <Typography variant="h4" sx={{textAlign: "center"} }>{firstName} {lastName} </Typography>
                               <Typography variant="h5"> Info </Typography>
                               <Divider sx={{marginBotton: 2} }/>
-                              <Typography variant="subtitle1" sx={{marginTop: 1} }>Email: {email} </Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Phone Number: {number} </Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Occupation: Paramedic </Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Certified Since: 2016 </Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Years Certified: 6 </Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Next Certification Exam: April 2023 </Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>City: Boston</Typography>
+                              <Typography variant="subtitle1" sx={{marginTop: 1} }>Email: {email}</Typography>
+                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Phone Number: {number}</Typography>
+                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Occupation: {occupation}</Typography>
+                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Certified Since: {certifiedSince}</Typography>
+                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Years Certified: {yearsCertified}</Typography>
+                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Next Certification Exam: April 2023</Typography>
+                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>City: {city}</Typography>
                               <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Interested In: ER Tech, AEMT Opportunities </Typography>
                           </CardContent>
                       </Card>
@@ -195,35 +237,35 @@ function Profile() {
                                       marginTop: 5,
                                       marginBottom: 3,
                                       marginRight: 2}}
-                                      name="First Name"
-                                      label="First Name"
-                                      type="First Name"
-                                      id="First Name"
-                                      onChange={(e) => setFirstName(e.target.value)}> </TextField>
+                                      name="City"
+                                      label="City"
+                                      type="City"
+                                      id="City"
+                                      onChange={(e) => setFormCity(e.target.value)}> </TextField>
                                   <TextField sx={{
                                       marginTop: 5,
                                       marginBottom: 3}}
-                                  name="Last Name"
-                                  label="Last Name"
-                                  type="Last Name"
-                                      id="Last Name"
-                                  onChange={(e) => setLastName(e.target.value)}> </TextField>
+                                  name="Years Certified"
+                                  label="Years Certified"
+                                  type="Years Certified"
+                                      id="Years Certified"
+                                  onChange={(e) => setFormYearsCertified(e.target.value)}> </TextField>
                               </div>
 
                               <div>
                                   <TextField sx={{marginRight: 2} }
-                                      name="Email"
-                                      label="Email"
-                                      type="Email"
-                                      id="Email"
-                                      onChange={(e) => setEmail(e.target.value)}> </TextField>
+                                      name="Certified Since"
+                                      label="Certified Since"
+                                      type="Certified Since"
+                                      id="Certified Since"
+                                      onChange={(e) => setFormCertifiedSince(e.target.value)}> </TextField>
 
                                   <TextField
-                                      name="Phone Number"
-                                      label="Phone Number"
-                                      type="Phone Number"
-                                      id="Phone Number"
-                                      onChange={(e) => setNumber(e.target.value)}> </TextField>
+                                      name="Occupation"
+                                      label="Occupation"
+                                      type="Occupation"
+                                      id="Occupation"
+                                      onChange={(e) => setFormOccupation(e.target.value)}> </TextField>
                               </div>
 
                               <Button type="submit" variant="contained" sx={{

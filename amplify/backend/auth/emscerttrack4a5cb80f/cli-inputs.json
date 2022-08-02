@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "emscerttrack4a5cb80f_identitypool_4a5cb80f",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "emscer4a5cb80f",
     "userPoolName": "emscerttrack4a5cb80f_userpool_4a5cb80f",
     "autoVerifiedAttributes": [
