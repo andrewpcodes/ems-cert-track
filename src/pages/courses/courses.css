@@ -1,0 +1,7 @@
+.bicolumn {
+    columns: 2;
+}
+
+.infoColumn {
+    column-width: 4fr;
+}
