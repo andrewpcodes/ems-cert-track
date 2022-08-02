@@ -8,6 +8,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    
     const isLoggedIn = async () => {
       try {
         const cUser = await Auth.currentUserInfo();
@@ -15,10 +16,10 @@ function Navbar() {
       } catch (e) {
         console.log("Error: ", e);
       }
-    };
-    if (!user) {
-      isLoggedIn();
-    }
+      };
+      if (!user) {
+          isLoggedIn();
+      }
   });
 
   const redirect = (to: string) => {
