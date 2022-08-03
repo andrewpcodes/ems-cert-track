@@ -1,0 +1,28 @@
+<Button style={{
+        position: 'absolute',
+        top: '40%',
+      }} onClick={() => {
+        alert('premap');
+        latLng = [5, 5];
+        alert('postmap');
+      }}>San Francisco</Button>
+      <Button style={{
+        position: 'absolute',
+        top: '50%',
+      }} onClick={() => {
+        latLng = [10, 10]
+      }}>WIT</Button>
+      <Button style={{
+        position: 'absolute',
+        top: '60%',
+      }} onClick={() => {
+        latLng = [20, 20]
+      }}>Test</Button>
+
+       style={{
+      height: '500px',
+      width: '500px',
+      position: 'absolute',
+      left: '50%',
+      top: '12%',
+    }}
