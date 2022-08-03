@@ -13,6 +13,9 @@ import Login from "./pages/login/Login";
 import Courses from "./pages/courses/Courses";
 import Profile from "./pages/Profile/Profile";
 import Admin from "./pages/admin/Admin";
+import BostonEMSMap from "./pages/courses/Maps/BostonEMS";
+import BostonUniversityMap from "./pages/courses/Maps/BostonUniversity";
+import EMSAcademyMap from "./pages/courses/Maps/EMSAcademy";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -31,6 +34,9 @@ root.render(
         <Route path="courses" element={<Courses />} />
         <Route path="profile" element={<Profile />} />
         <Route path="admin" element={<Admin />} />
+        <Route path="boston-ems" element={<BostonEMSMap />} />
+        <Route path="boston-university" element={<BostonUniversityMap />} />
+        <Route path="ems-academy" element={<EMSAcademyMap />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
