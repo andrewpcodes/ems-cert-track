@@ -36,7 +36,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar>
+    <AppBar sx={{backgroundColor: '#101F33'}}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           EMS-Cert-Track

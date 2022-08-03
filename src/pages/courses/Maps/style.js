@@ -1,13 +1,24 @@
 export const style = {
+    page: {
+        marginTop: '10ex',
+    },
     title: {
-        marginTop: '-30px',
-        marginLeft: '50%',
+        marginLeft: '2ex',
+        marginRight: '2ex',
         fontWeight: 'bold',
+        fontSize: 30,
+        textDecoration: 'underline'
+    },
+    info: {
+        marginLeft: '2ex',
+        fontSize: 10,
     },
     map: {
-        height: '500px',
-        width: '45%',
-        marginTop: '10px',
-        marginLeft: '45%',
-    }
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        height: '85%',
+        width: '50%',
+        border: 'solid black',
+    },
 }

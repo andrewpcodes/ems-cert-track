@@ -1,20 +1,24 @@
-import { Button, Grid } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Grid, Box } from '@mui/material';
+import CourseSelector from './course-selector/CourseSelector';
+import { MapView, Text } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
+import '@aws-amplify/ui-react/styles.css';
+import { style } from './Maps/style';
+
+import awsExports from '../../aws-exports';
+Amplify.configure(awsExports);
 
 const Courses = () => {
-    const navigate = useNavigate();
-
     return (
-        <Grid style={{marginTop: '65px'}}>
-            <Button onClick={() => {
-                navigate('/boston-ems')
-            }}>Boston EMS</Button>
-            <Button onClick={() => {
-                navigate('/boston-university')
-            }}>Boston University</Button>
-            <Button onClick={() => {
-                navigate('/ems-academy')
-            }}>EMS Academy</Button>
+        <Grid container style={style.page}>
+            <CourseSelector />
+            <Text style={style.title}>Choose a Course</Text>
+            <MapView style={style.map} 
+                initialViewState={{
+                    latitude: 0,
+                    longitude: 0,
+                    zoom: 0,
+                }}/>
         </Grid>
     )
 }
