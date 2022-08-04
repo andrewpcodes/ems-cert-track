@@ -1,24 +1,11 @@
 import { useState } from "react";
 import { Storage } from "aws-amplify";
 import { Auth } from "aws-amplify";
-import {
-    Box,
-    Container,
-    CssBaseline,
-    Typography,
-    Button,
-    TextField,
-    Alert,
-    Grid,
-    Link,
-    Divider,
-    Avatar,
-    Modal,
-    Card,
-    CardContent,
-} from "@mui/material";
+import { Box, Container, CssBaseline, Typography, Button, TextField, Alert,
+        Grid, Link, Divider, Avatar, Modal, Card, CardContent, } from "@mui/material";
 import { render } from "@testing-library/react";
 import { blue } from "@mui/material/colors";
+import Notification from "../../components/notification/Notification";
 
 function Profile() {
     const [fileData, setFileData] = useState<File>();
@@ -39,8 +26,7 @@ function Profile() {
     var [formOccupation, setFormOccupation] = useState("");
     var [formCity, setFormCity] = useState("");
     var [formCertifiedSince, setFormCertifiedSince] = useState("");
-    var [formYearsCertified, setFormYearsCertified] = useState("")
-    
+    var [formYearsCertified, setFormYearsCertified] = useState("");
 
     async function loadProfilePicture() {
         const profilePicture = await Storage.get("profile.jpg", {
@@ -148,16 +134,16 @@ function Profile() {
         event.preventDefault();
         const user = await Auth.currentAuthenticatedUser();
         try {
-            if (formCertifiedSince == "") {
+            if (formCertifiedSince === "") {
                 formCertifiedSince = certifiedSince;
             }
-            if (formYearsCertified == "") {
+            if (formYearsCertified === "") {
                 formYearsCertified = yearsCertified;
             }
-            if (formOccupation == "") {
+            if (formOccupation === "") {
                 formOccupation = occupation;
             }
-            if (formCity == "") {
+            if (formCity === "") {
                 formCity = city;
             }
 
@@ -165,167 +151,168 @@ function Profile() {
                 'custom:certified-since': formCertifiedSince,
                 'custom:years-certified': formYearsCertified,
                 'custom:occupation': formOccupation,
-                'custom:city': formCity
+                'custom:city': formCity,
             });
         }
         catch (error) {
             console.log(error)
         }
+        setOpen(false);
     };
 
+    const certDate = new Date(certifiedSince);
+
   return (
-    <>
-            <Container component="main">
-                <CssBaseline />
-                <Box sx={{
-                    marginTop: 16,
-                    display: "flex",
-                    flexDirection: "column",
-              }}>
-
-                  <div>
-                      <Avatar src={profileLink} sx={{ width: 400, height: 400, float: "left" }} />
-                      <Card sx={{
-                          bgcolor: "#EFEFEF",
-                          height: 400,
-                          width: 400,
-                          borderRadius: 4,
-                          float: "right",
-                      }}>
-                          <CardContent sx={{
-                              bgcolor: ""
-                          }}>
-                              <Typography variant="h4" sx={{textAlign: "center"} }>{firstName} {lastName} </Typography>
-                              <Typography variant="h5"> Info </Typography>
-                              <Divider sx={{marginBotton: 2} }/>
-                              <Typography variant="subtitle1" sx={{marginTop: 1} }>Email: {email}</Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Phone Number: {number}</Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Occupation: {occupation}</Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Certified Since: {certifiedSince}</Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Years Certified: {yearsCertified}</Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Next Certification Exam: April 2023</Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>City: {city}</Typography>
-                              <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Interested In: ER Tech, AEMT Opportunities </Typography>
-                          </CardContent>
-                      </Card>
-                  </div>
-
-                  <div>
-                      <Button onClick={() => setOpen(true)} variant="contained" sx={{ marginTop: 2 }}component="label">Edit Profile </Button>
-                      <Modal
-                          open={open}
-                          onClose={() => setOpen(false)}
-                          aria-labelledby="modal-modal-title"
-                          aria-describedby="modal-modal-description"
-                      >
-                          <Box component="form" onSubmit={editInformation} sx={{
-                              position: 'absolute' as 'absolute',
-                              top: '50%',
-                              left: '50%',
-                              transform: 'translate(-50%, -50%)',
-                              width: 600,
-                              bgcolor: 'background.paper',
-                              border: '2px solid #000',
-                              boxShadow: 24,
-                              p: 4,
-                                }}>
-                              <Typography id="modal-modal-title" variant="h6" component="h2">
-                                  Edit Account Information
-                              </Typography>
-                              <div>
-                                  <TextField sx={{
-                                      marginTop: 5,
-                                      marginBottom: 3,
-                                      marginRight: 2}}
-                                      name="City"
-                                      label="City"
-                                      type="City"
-                                      id="City"
-                                      onChange={(e) => setFormCity(e.target.value)}> </TextField>
-                                  <TextField sx={{
-                                      marginTop: 5,
-                                      marginBottom: 3}}
-                                  name="Years Certified"
-                                  label="Years Certified"
-                                  type="Years Certified"
-                                      id="Years Certified"
-                                  onChange={(e) => setFormYearsCertified(e.target.value)}> </TextField>
-                              </div>
-
-                              <div>
-                                  <TextField sx={{marginRight: 2} }
-                                      name="Certified Since"
-                                      label="Certified Since"
-                                      type="Certified Since"
-                                      id="Certified Since"
-                                      onChange={(e) => setFormCertifiedSince(e.target.value)}> </TextField>
-
-                                  <TextField
-                                      name="Occupation"
-                                      label="Occupation"
-                                      type="Occupation"
-                                      id="Occupation"
-                                      onChange={(e) => setFormOccupation(e.target.value)}> </TextField>
-                              </div>
-
-                              <Button type="submit" variant="contained" sx={{
-                                  marginTop: 3,
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  alignItems: "left",
-                              }} > Submit New Account Information</Button>
-
-                          </Box>
-                      </Modal>
-                  </div>
-                </Box>
-
-            <Box
-                    sx={{
-                        marginTop: 5,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "left",
-                    }}
-                >    
-    <div>
-        <Divider sx={{margin:5}} />
-           <div>
-             <Button variant="contained" sx={{ marginBottom:1 }} component="label">Upload File
-             <input type="file" hidden onChange={(e) => setFileData(e.target.files![0])} />
-             </Button>
-           <div >{fileData?.name}</div>
-        </div>
-        <div>
-            <Button onClick={uploadResume}>Upload Resume</Button>
-                        
-            <Button onClick={uploadCertification}>Upload Certification</Button>
-
-            <Button onClick={ uploadProfile } > Upload Profile Picture</Button>
-        </div>
-        <Divider sx={{margin:5}} />
+    <Container component="main">
+        <CssBaseline />
+        <Box sx={{
+            marginTop: 16,
+            display: "flex",
+            flexDirection: "column",
+        }}>
             <div>
-                  <Button onClick={downloadResume}>Download Resume</Button>
-                        
-                  <Button onClick={downloadCertification}>Download Certification</Button>
+            <Avatar src={profileLink} sx={{ width: 400, height: 400, float: "left" }} />
+            <Card sx={{
+                bgcolor: "#EFEFEF",
+                width: 400,
+                borderRadius: 4,
+                float: "right",
+
+            }}>
+            <Notification certDate={certDate} />
+            <CardContent sx={{bgcolor: ""}}>
+            <Typography variant="h4" sx={{textAlign: "center"} }>{firstName}{lastName}</Typography>
+            <Typography variant="h5"> Info </Typography>
+            <Divider sx={{marginBotton: 2} }/>
+            <Typography variant="subtitle1" sx={{ marginTop: 1} }>Email: {email}</Typography>
+            <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Phone Number: {number}</Typography>
+            <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Occupation: {occupation}</Typography>
+            <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Certified Since: {certifiedSince}</Typography>
+            <Typography variant="subtitle1" sx={{ marginTop: 1 }}>Years Certified: {yearsCertified}</Typography>
+            <Typography variant="subtitle1" sx={{ marginTop: 1 }}>
+                Next Certification Exam: {certDate.getMonth()+1}/{certDate.getDate()}/{certDate.getFullYear()+2} 
+            </Typography>
+            <Typography variant="subtitle1" sx={{ marginTop: 1 }}>City: {city}</Typography>
+            </CardContent>
+            </Card>
             </div>
-    </div> 
-                    {alert ? (
-                        <Alert onClose={() => setAlert(false)} severity="success">
-                  File Upload Successful.
+
+            <div>
+                <Button onClick={() => setOpen(true)} variant="contained" sx={{ marginTop: 2 }}component="label">
+                    Edit Profile
+                </Button>
+                <Modal
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box component="form" onSubmit={editInformation} sx={{
+                        position: 'absolute' as 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: 600,
+                        bgcolor: 'background.paper',
+                        border: '2px solid #000',
+                        boxShadow: 24,
+                        p: 4,
+                    }}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Edit Account Information
+                        </Typography>
+                        <div>
+                            <TextField sx={{
+                                marginTop: 5,
+                                marginBottom: 3,
+                                marginRight: 2,
+                            }}
+                                name="City"
+                                label="City"
+                                type="City"
+                                id="City"
+                                onChange={(e) => setFormCity(e.target.value)}>
+                            </TextField>
+                            <TextField sx={{
+                                marginTop: 5,
+                                marginBottom: 3,
+                            }}
+                                name="Years Certified"
+                                label="Years Certified"
+                                type="Years Certified"
+                                id="Years Certified"
+                                onChange={(e) => setFormYearsCertified(e.target.value)}> 
+                            </TextField>
+                        </div>
+                        <div>
+                            <TextField sx={{marginRight: 2}}
+                                name="Certified Since"
+                                label="Certified Since (dd/mm/yyyy)"
+                                type="Certified Since"
+                                id="Certified Since"
+                                onChange={(e) => setFormCertifiedSince(e.target.value)}>
+                            </TextField>
+                            <TextField
+                                name="Occupation"
+                                label="Occupation"
+                                type="Occupation"
+                                id="Occupation"
+                                onChange={(e) => setFormOccupation(e.target.value)}>
+                            </TextField>
+                        </div>
+                        <Button 
+                            type="submit" 
+                            variant="contained" 
+                            sx={{
+                                marginTop: 3,
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "left",
+                            }}>
+                                Submit New Account Information
+                        </Button>
+                    </Box>
+                </Modal>
+            </div>
+        </Box>
+
+        <Box sx={{
+                marginTop: 5,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "left",
+        }}>       
+            <div>
+                <Divider sx={{margin:5}} />
+                <div>
+                    <Button variant="contained" sx={{ marginBottom:1 }} component="label">Upload File
+                        <input type="file" hidden onChange={(e) => setFileData(e.target.files![0])} />
+                    </Button>
+                    <div>{fileData?.name}</div>
+                </div>
+                <div>
+                    <Button onClick={uploadResume}>Upload Resume</Button>
+                    <Button onClick={uploadCertification}>Upload Certification</Button>
+                    <Button onClick={ uploadProfile } > Upload Profile Picture</Button>
+                </div>
+                <Divider sx={{margin:5}} />
+                <div>
+                    <Button onClick={downloadResume}>Download Resume</Button>  
+                    <Button onClick={downloadCertification}>Download Certification</Button>
+                </div>
+            </div> 
+            {alert ? (
+                <Alert onClose={() => setAlert(false)} severity="success">
+                    File Upload Successful.
                 </Alert>
-                    ) : null}
-
-                    {badAlert ? (
-                        <Alert onClose={() => setBadAlert(false)} severity="error">
-                            File Upload Unsuccessful.
-                        </Alert>
-                    ) : null}
-                </Box>
-
-
+            ) : null}
+            {badAlert ? (
+                <Alert onClose={() => setBadAlert(false)} severity="error">
+                    File Upload Unsuccessful.
+                </Alert>
+            ) : null}
+        </Box>
     </Container>
-    </>
   );
 }
 

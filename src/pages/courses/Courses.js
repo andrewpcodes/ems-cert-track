@@ -18,7 +18,8 @@ const Courses = () => {
                     latitude: 0,
                     longitude: 0,
                     zoom: 0,
-                }}/>
+                }}
+            />
         </Grid>
     )
 }
