@@ -8,7 +8,6 @@ function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    
     const isLoggedIn = async () => {
       try {
         const cUser = await Auth.currentUserInfo();
@@ -16,10 +15,10 @@ function Navbar() {
       } catch (e) {
         console.log("Error: ", e);
       }
-      };
-      if (!user) {
-          isLoggedIn();
-      }
+    };
+    if (!user) {
+      isLoggedIn();
+    }
   });
 
   const redirect = (to: string) => {
@@ -36,7 +35,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar sx={{backgroundColor: '#101F33'}}>
+    <AppBar sx={{backgroundColor: 'cadetblue', color: 'white'}}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           EMS-Cert-Track
@@ -46,32 +45,28 @@ function Navbar() {
           onClick={() => {
             redirect("/");
           }}
-        >
-          Home
+        >Home
         </Button>
         <Button
           color="inherit"
           onClick={() => {
             redirect("/checklist");
           }}
-        >
-          Checklist
+        >Checklist
         </Button>
         <Button
           color="inherit"
           onClick={() => {
             redirect("/recertification");
           }}
-        >
-          Recertification
+        >Recertification
         </Button>
         <Button
           color="inherit"
           onClick={() => {
             redirect("/Courses");
           }}
-        >
-          Courses
+        >Courses
         </Button>
         {!user ? (
           <>
@@ -80,16 +75,14 @@ function Navbar() {
               onClick={() => {
                 redirect("/login");
               }}
-            >
-              Login
+            >Login
             </Button>
             <Button
               color="inherit"
               onClick={() => {
                 redirect("/register");
               }}
-            >
-              Registration
+            >Registration
             </Button>
           </>
         ) : (
@@ -99,8 +92,7 @@ function Navbar() {
               onClick={() => {
                 signOut();
               }}
-            >
-              Sign Out
+            >Sign Out
             </Button>
 
             <Button
@@ -108,8 +100,7 @@ function Navbar() {
               onClick={() => {
                 redirect("/profile");
               }}
-            >
-              Profile
+            >Profile
             </Button>
           </>
         )}
