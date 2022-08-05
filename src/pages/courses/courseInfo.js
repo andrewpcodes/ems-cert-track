@@ -15,6 +15,11 @@ export const courses = [
             region: 'Region II',
             expiration: 'MA DPH accreditation expires 1/1/2024',
         },
+        facts: {
+            'Address: ': 'P.O. Box 402',
+            '': 'Shirley, MA 01464', //address line 2
+            'Phone #: ': '(978) 424-3318',
+        },
     },
     {
         id: 1,
@@ -29,6 +34,11 @@ export const courses = [
             levelsOffered: 'Approved Levels: EMT',
             region: 'Region IV',
             expiration: 'MA DPH accreditation expires 11/1/2023',
+        },
+        facts: {
+            'Address: ': '785 Albany St',
+            '': 'Boston, MA 02118', //address line 2
+            'Phone #: ': '(617) 343-2367',
         },
     },
     {
@@ -45,6 +55,10 @@ export const courses = [
             region: 'Region IV',
             expiration: 'MA DPH accreditation expires 6/1/2023',
         },
+        facts: {
+            'Address: ': 'Boston, MA 02215',
+            'Phone #: ': '(617) 353-2000',
+        },
     },
     {
         id: 3,
@@ -59,6 +73,11 @@ export const courses = [
             levelsOffered: 'Approved Levels: EMT, AEMT, Paramedic (CAAHEP Letter of Review)',
             region: 'Region III',
             expiration: 'MA DPH accreditation expires 8/1/2025',
+        },
+        facts: {
+            'Address: ': '79 Parkingway',
+            '': 'Quincy, MA 02169', //address line 2
+            'Phone #: ': '(978) 424-3318',
         },
     },
     {
@@ -75,6 +94,10 @@ export const courses = [
             region: 'Region II',
             expiration: 'MA DPH accreditation expires 11/1/2023',
         },
+        facts: {
+            'Address: ': '325 Main St',
+            '': 'Oxford, MA 01540', //address line 2
+        },
     },
     {
         id: 5,
@@ -90,6 +113,11 @@ export const courses = [
             region: 'Regions IV and V',
             expiration: 'MA DPH accreditation expires 3/1/2023',
         },
+        facts: {
+            'Address: ': '1 Massasoit Blvd',
+            '': 'Brockton, MA 02302', //address line 2
+            'Phone #: ': '(508) 588-9100',
+        },
     },
     {
         id: 6,
@@ -104,6 +132,11 @@ export const courses = [
             levelsOffered: 'Approved Levels: EMT',
             region: 'Regions I, II, III, IV and V',
             expiration: 'MA DPH accreditation expires 12/1/2022',
+        },
+        facts: {
+            'Address: ': '90 Main St',
+            '': 'Carver, MA 02330', //address line 2
+            'Phone #: ': '(800) 497-6732',
         },
     },
 ]

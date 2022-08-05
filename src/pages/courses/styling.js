@@ -9,10 +9,22 @@ export const styling = {
     },
     title: {
         position: 'relative',
-        width: '100%',
+        width: '50%',
         height: '12%',
         mb: 2,
         borderBottom: 'solid black',
+    },
+    mapHintContainer: {
+        position: 'relative',
+        width: '50%',
+        height: '12%',
+        mb: 2,
+        borderBottom: 'solid black',
+    },
+    mapHint: {
+        position: 'relative',
+        left: '50%',
+        top: '50%',
     },
     courses: {
         position: 'relative',
@@ -38,7 +50,7 @@ export const styling = {
         pl: 1,
     },
     factoids: {
-        
+        paddingLeft: 3,
     },
     mapContainer: {
         position: 'relative',
