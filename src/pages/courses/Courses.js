@@ -1,56 +1,81 @@
-import { Grid, List, Button, ListItem } from '@mui/material';
-import { MapView, Text } from '@aws-amplify/ui-react';
-import { Amplify } from 'aws-amplify';
-import { Marker } from 'react-map-gl';
-import '@aws-amplify/ui-react/styles.css';
-import { styling } from './styling';
-//import Map from './Map';
 
-import awsExports from '../../aws-exports';
-import { courses } from './courseInfo';
 import { useState } from 'react';
+import { Marker } from 'react-map-gl';
+import { Grid, Link, Button, Typography } from '@mui/material';
+import PublicIcon from '@mui/icons-material/Public';
+
+import { styling } from './styling';
+import { courses } from './courseInfo';
+
+import { MapView } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
+import awsExports from '../../aws-exports';
+import '@aws-amplify/ui-react/styles.css';
 Amplify.configure(awsExports);
 
-//let defaultLocation = 0;
+
+const defaultCourse = {
+    id: 0,
+    label: 'Select a course from the left to find out more',
+    coordinates: {
+        latitude: 42,
+        longitude: -71,
+    },
+    factoids: {
+        city: '',
+        levelsOffered: '',
+        region: '',
+        expiration: '',
+    }
+}
+
+let currentCourse = defaultCourse;
+let factoids = Object.entries(defaultCourse.factoids);
 
 const Courses = () => {
-    const [coordinates, setCoordinates] = useState(courses[0].coordinates);
-    //let locationOfCourse = defaultLocation;
-    //localStorage.setItem('locationKey', locationOfCourse);
+    const [coordinates, setCoordinates] = useState(defaultCourse.coordinates);
 
     const updateMap = (course) => {
         setCoordinates(course.coordinates);
-        //localStorage.setItem('coordKey', coordinates);
-        //defaultLocation = course === courses[0] ? true : false;
-        //localStorage.setItem('locationKey', defaultLocation);
+        currentCourse = course;
+        factoids = Object.entries(course.factoids);
+    };
 
-        //defaultLocation = course.id;
-        //localStorage.setItem('locationKey', locationOfCourse);
-        // eslint-disable-next-line no-restricted-globals
-        //location.reload();
+    const openLinkNewTab = (courseURL) => {
+        window.open(courseURL);
     };
 
     return (
-        <Grid container style={styling.page}>
-            <Grid item style={styling.buttons}>
-                <List style={styling.list}>
-                    {courses.map((course) => (
-                        <Button onClick={() => updateMap(course)}>
-                            {course.label}
-                        </Button>
-                    ))}
-                </List>
+        <Grid container sx={styling.page}>
+            <Typography variant='h3' sx={styling.title}>Find a Course Near You</Typography>
+            <Grid item sx={styling.courses}>
+                {courses.map((course) => (
+                    <Button
+                        startIcon={<PublicIcon />} variant='outlined' 
+                        sx={styling.buttons} onClick={() => updateMap(course)}
+                    >
+                        {course.label}
+                    </Button>
+                ))}
             </Grid>
-            <Grid item style={styling.information}>
-                <Text style={styling.title}>Choose a Course</Text>
-                <List style={styling.info}>
-                    <ListItem>bullet1</ListItem>
-                    <ListItem>bullet2</ListItem>
-                    <ListItem>bullet3</ListItem>
-                </List>
+            <Grid item sx={styling.information}>
+                <Typography 
+                    variant='h6' gutterBottom={true}
+                    sx={styling.courseName}
+                >
+                    {currentCourse.label}
+                </Typography>
+                {factoids.map(([fact, oid]) => (
+                    <Typography variant='body2' fontStyle='italic'>{oid}</Typography>
+                ))}
+                {currentCourse === defaultCourse ? null : 
+                    <Link sx={{cursor: 'crosshair'}} onClick={() => openLinkNewTab(currentCourse.route)}>
+                        site
+                    </Link>
+                }    
             </Grid>
-            <Grid item style={styling.map}>
-                <MapView>
+            <Grid sx={styling.mapContainer} item>
+                <MapView style={styling.map}>
                     <Marker latitude={coordinates.latitude} longitude={coordinates.longitude} />
                 </MapView>
             </Grid>

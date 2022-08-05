@@ -8,18 +8,27 @@ import Dropdown from './Dropdown';
 const Notification = (certDate) => {
     const [open, setOpen] = React.useState(false);
     const [anchorel, setanchorel] = React.useState(null);
+    const today = new Date();
+
+    const todaysDate = {
+        day: today.getDate(),
+        month: today.getMonth() + 1,
+        year: today.getFullYear(),
+    }
 
     const certExpires = {
         day: certDate.certDate.getDate(),
-        month: certDate.certDate.getMonth(),
+        month: certDate.certDate.getMonth() + 1,
         year: certDate.certDate.getFullYear() + 2,
     }
 
-    const today = new Date();
+    const yearsLeft = certExpires.year - todaysDate.year;
+    const monthsLeft = (yearsLeft > 0) ? ((yearsLeft * 12) + (certExpires.month - todaysDate.month)) : 
+        certExpires.month - todaysDate.month;
 
-    const withinYear = (today.getFullYear() >= certExpires.year) ? true : false;
-    // getMonth() returns index of month from 0-11, or maybe its just wrong because day doesnt
-    const withinMonth = (withinYear && ((today.getMonth() + 1) >= certExpires.month)) ? true : false;
+    const withinMonth = (1 >= monthsLeft) ? true : false;
+
+    console.log(yearsLeft, monthsLeft, withinMonth);
 
     const notifications = withinMonth ? {
         id: 1,

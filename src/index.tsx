@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import { ThemeProvider } from "@mui/material";
+import { themeOverride } from "./themeOverride";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -13,15 +15,12 @@ import Login from "./pages/login/Login";
 import Courses from "./pages/courses/Courses";
 import Profile from "./pages/Profile/Profile";
 import Admin from "./pages/admin/Admin";
-import { override } from "./override";
-import { ThemeProvider } from '@mui/system';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <ThemeProvider theme={override}>
-  <React.StrictMode>
+  <ThemeProvider theme={themeOverride}>
     <BrowserRouter>
       <Navbar />
       <Routes>
@@ -36,7 +35,6 @@ root.render(
         <Route path="courses" element={<Courses />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
   </ThemeProvider>
 );
 

@@ -24,29 +24,7 @@
   color: white;
 }
 
-li {
-    float: left;
-}
 
-ul {
-    overflow: hidden;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-  background-color: blue;
-}
-
-div {
-  overflow: hidden;
-}
 
 .App-link {
   color: #61dafb;

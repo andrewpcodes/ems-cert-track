@@ -1,33 +1,54 @@
 export const styling = {
     page: {
+        position: 'absolute',
+        top: '12%',
+        left: '5%',
+        width: '90%',
+        height: '80%',
+        overflow: 'hidden',
+    },
+    title: {
         position: 'relative',
-        top: 64,
-        width: window.screen.width,
+        width: '100%',
+        height: '12%',
+        mb: 2,
+        borderBottom: 'solid black',
+    },
+    courses: {
+        position: 'relative',
+        width: '20%',
+        height: '100%',
     },
     buttons: {
-        position: 'relative',
-        margin: 25,
-        width: 200,
+        mb: '5px',
+        backgroundColor: 'cadetblue',
+        color: 'white',
+        '&:hover': {
+            backgroundColor: 'blue',
+        }
     },
     information: {
         position: 'relative',
-        margin: 25,
-        width: 300,
+        width: '30%',
         height: '100%',
+        pl: 1,
     },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 30,
-        textDecoration: 'underline'
+    courseName: {
+        borderLeft: 'solid black',
+        pl: 1,
     },
-    info: {
-        fontSize: 20,
+    factoids: {
+        
+    },
+    mapContainer: {
+        position: 'relative',
+        width: '50%',
+        height: 400,
+        border: 'solid black',
     },
     map: {
         position: 'relative',
-        top: 0,
-        width: 600,
-        height: 400,
-        margin: 25,
+        width: '100%',
+        height: '100%',
     },
 }
