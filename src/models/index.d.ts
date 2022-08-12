@@ -1,26 +1,28 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
+import {
+  ModelInit,
+  MutableModel,
+  PersistentModelConstructor,
+} from "@aws-amplify/datastore";
 
 export enum Pages {
   RECERTIFICATION = "RECERTIFICATION",
   HOME = "HOME",
   CHECKLIST = "CHECKLIST",
   COURSES = "COURSES",
-  PROFILE = "PROFILE"
+  PROFILE = "PROFILE",
 }
-
-
 
 type SiteContentMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
+  readOnlyFields: "createdAt" | "updatedAt";
+};
 
 type UserMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
+  readOnlyFields: "createdAt" | "updatedAt";
+};
 
 type ChecklistMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
+  readOnlyFields: "createdAt" | "updatedAt";
+};
 
 export declare class SiteContent {
   readonly id: string;
@@ -29,7 +31,12 @@ export declare class SiteContent {
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<SiteContent, SiteContentMetaData>);
-  static copyOf(source: SiteContent, mutator: (draft: MutableModel<SiteContent, SiteContentMetaData>) => MutableModel<SiteContent, SiteContentMetaData> | void): SiteContent;
+  static copyOf(
+    source: SiteContent,
+    mutator: (
+      draft: MutableModel<SiteContent, SiteContentMetaData>
+    ) => MutableModel<SiteContent, SiteContentMetaData> | void
+  ): SiteContent;
 }
 
 export declare class User {
@@ -44,7 +51,12 @@ export declare class User {
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);
-  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
+  static copyOf(
+    source: User,
+    mutator: (
+      draft: MutableModel<User, UserMetaData>
+    ) => MutableModel<User, UserMetaData> | void
+  ): User;
 }
 
 export declare class Checklist {
@@ -61,5 +73,10 @@ export declare class Checklist {
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Checklist, ChecklistMetaData>);
-  static copyOf(source: Checklist, mutator: (draft: MutableModel<Checklist, ChecklistMetaData>) => MutableModel<Checklist, ChecklistMetaData> | void): Checklist;
+  static copyOf(
+    source: Checklist,
+    mutator: (
+      draft: MutableModel<Checklist, ChecklistMetaData>
+    ) => MutableModel<Checklist, ChecklistMetaData> | void
+  ): Checklist;
 }

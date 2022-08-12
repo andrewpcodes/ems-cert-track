@@ -1,7 +1,5 @@
 {
-  "providers": [
-    "awscloudformation"
-  ],
+  "providers": ["awscloudformation"],
   "projectName": "emscerttrack",
   "version": "3.1",
   "frontend": "javascript",
