@@ -57,7 +57,7 @@ function Profile() {
       setEmail(loadEmail);
       const profilePicture = await Storage.get(loadEmail + "profile.jpg", {
         download: false,
-        level: "private",
+        level: "public",
       });
       setCity(loadCity);
       setProfileLink(profilePicture);
@@ -76,7 +76,7 @@ function Profile() {
       console.log(fileData!.name);
       const result = await Storage.put(email + "profile.jpg", fileData, {
         contentType: fileData?.type,
-        level: "private",
+        level: "public",
       });
       setFileStatus(true);
       setAlert(true);
@@ -95,7 +95,7 @@ function Profile() {
       console.log(fileData!.name);
       const result = await Storage.put(email + "certification.pdf", fileData, {
         contentType: fileData?.type,
-        level: "private",
+        level: "public",
       });
       setFileStatus(true);
       setAlert(true);
@@ -114,7 +114,7 @@ function Profile() {
       console.log(fileData!.name);
       const result = await Storage.put(email + "resume.pdf", fileData, {
         contentType: fileData?.type,
-        level: "private",
+        level: "public",
       });
       setFileStatus(true);
       setAlert(true);
@@ -128,7 +128,7 @@ function Profile() {
   const downloadResume = async () => {
     const result = await Storage.get(email + `resume.pdf`, {
       download: false,
-      level: "private",
+      level: "public",
     });
     console.log(result);
     window.open(result);
@@ -137,7 +137,7 @@ function Profile() {
   const downloadCertification = async () => {
     const result = await Storage.get(email + `certification.pdf`, {
       download: false,
-      level: "private",
+      level: "public",
     });
     console.log(result);
     window.open(result);
