@@ -7,9 +7,7 @@
         {
           "category": "auth",
           "resourceName": "emscerttrack4a5cb80f",
-          "attributes": [
-            "UserPoolId"
-          ]
+          "attributes": ["UserPoolId"]
         }
       ],
       "output": {
@@ -43,17 +41,12 @@
         {
           "category": "auth",
           "resourceName": "emscerttrack4a5cb80f",
-          "attributes": [
-            "UserPoolId"
-          ]
+          "attributes": ["UserPoolId"]
         },
         {
           "category": "function",
           "resourceName": "AdminQueriesdc13937e",
-          "attributes": [
-            "Arn",
-            "Name"
-          ]
+          "attributes": ["Arn", "Name"]
         }
       ]
     }
@@ -66,23 +59,15 @@
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
-        "signupAttributes": [
-          "EMAIL"
-        ],
+        "usernameAttributes": ["EMAIL"],
+        "signupAttributes": ["EMAIL"],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
+        "mfaTypes": ["SMS"],
+        "verificationMechanisms": ["EMAIL"]
       }
     },
     "userPoolGroups": {
@@ -118,9 +103,7 @@
         {
           "category": "auth",
           "resourceName": "emscerttrack4a5cb80f",
-          "attributes": [
-            "UserPoolId"
-          ]
+          "attributes": ["UserPoolId"]
         }
       ]
     }
@@ -136,9 +119,7 @@
         {
           "category": "auth",
           "resourceName": "emscerttrack4a5cb80f",
-          "attributes": [
-            "UserPoolId"
-          ]
+          "attributes": ["UserPoolId"]
         }
       ]
     },
@@ -153,9 +134,7 @@
         {
           "category": "auth",
           "resourceName": "emscerttrack4a5cb80f",
-          "attributes": [
-            "UserPoolId"
-          ]
+          "attributes": ["UserPoolId"]
         }
       ]
     }

@@ -1,16 +1,15 @@
-import React from 'react';
+import React from "react";
 
 type ViewProgressProps = {
-    totalHours: number
-}
+  totalHours: number;
+};
 
-const ViewProgress = ({totalHours }: ViewProgressProps) => {
+const ViewProgress = ({ totalHours }: ViewProgressProps) => {
+  return (
+    <>
+      <div>{`${totalHours} `}hours / 40 hours</div>
+    </>
+  );
+};
 
-    return(
-        <>
-            <div>{`${totalHours} `}hours / 40 hours</div>
-        </>
-    );
-}
-
-export default ViewProgress ;
+export default ViewProgress;

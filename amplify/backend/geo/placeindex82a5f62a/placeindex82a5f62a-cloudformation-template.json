@@ -132,10 +132,7 @@
               "Resource": "*"
             },
             {
-              "Action": [
-                "geo:UpdatePlaceIndex",
-                "geo:DeletePlaceIndex"
-              ],
+              "Action": ["geo:UpdatePlaceIndex", "geo:DeletePlaceIndex"],
               "Effect": "Allow",
               "Resource": {
                 "Fn::Sub": [
@@ -188,10 +185,7 @@
           "ZipFile": "const response = require('cfn-response');\nconst aws = require('aws-sdk');\nexports.handler = async function (event, context) {\n  try {\n    console.log('REQUEST RECEIVED:' + JSON.stringify(event));\n    const pricingPlan = 'RequestBasedUsage';\n    if (event.RequestType == 'Create') {\n      const params = {\n        IndexName: event.ResourceProperties.indexName,\n        DataSource: event.ResourceProperties.dataSource,\n        DataSourceConfiguration: {\n          IntendedUse: event.ResourceProperties.dataSourceIntendedUse,\n        },\n        PricingPlan: pricingPlan\n      };\n      const locationClient = new aws.Location({ apiVersion: '2020-11-19', region: event.ResourceProperties.region });\n      const res = await locationClient.createPlaceIndex(params).promise();\n      console.log('create resource response data' + JSON.stringify(res));\n      if (res.IndexName && res.IndexArn) {\n        event.PhysicalResourceId = res.IndexName;\n        await response.send(event, context, response.SUCCESS, res, params.IndexName);\n      } else {\n        await response.send(event, context, response.FAILED, res, params.IndexName);\n      }\n    }\n    if (event.RequestType == 'Update') {\n      const params = {\n        IndexName: event.ResourceProperties.indexName,\n        DataSourceConfiguration: {\n          IntendedUse: event.ResourceProperties.dataSourceIntendedUse,\n        },\n        PricingPlan: pricingPlan\n      };\n      const locationClient = new aws.Location({ apiVersion: '2020-11-19', region: event.ResourceProperties.region });\n      const res = await locationClient.updatePlaceIndex(params).promise();\n      console.log('update resource response data' + JSON.stringify(res));\n      if (res.IndexName && res.IndexArn) {\n        event.PhysicalResourceId = res.IndexName;\n        await response.send(event, context, response.SUCCESS, res, params.IndexName);\n      } else {\n        await response.send(event, context, response.FAILED, res, params.IndexName);\n      }\n    }\n    if (event.RequestType == 'Delete') {\n      const params = {\n        IndexName: event.ResourceProperties.indexName\n      };\n      const locationClient = new aws.Location({ apiVersion: '2020-11-19', region: event.ResourceProperties.region });\n      const res = await locationClient.deletePlaceIndex(params).promise();\n      event.PhysicalResourceId = event.ResourceProperties.indexName;\n      console.log('delete resource response data' + JSON.stringify(res));\n      await response.send(event, context, response.SUCCESS, res, params.IndexName);\n    }\n  } catch (err) {\n    console.log(err.stack);\n    const res = { Error: err };\n    await response.send(event, context, response.FAILED, res, event.ResourceProperties.indexName);\n    throw err;\n  }\n};\n"
         },
         "Role": {
-          "Fn::GetAtt": [
-            "CustomPlaceIndexLambdaServiceRoleFD2F3C9D",
-            "Arn"
-          ]
+          "Fn::GetAtt": ["CustomPlaceIndexLambdaServiceRoleFD2F3C9D", "Arn"]
         },
         "Handler": "index.handler",
         "Runtime": "nodejs14.x",
@@ -206,10 +200,7 @@
       "Type": "Custom::LambdaCallout",
       "Properties": {
         "ServiceToken": {
-          "Fn::GetAtt": [
-            "CustomPlaceIndexLambda79813BB9",
-            "Arn"
-          ]
+          "Fn::GetAtt": ["CustomPlaceIndexLambda79813BB9", "Arn"]
         },
         "indexName": {
           "Fn::Join": [
@@ -259,10 +250,7 @@
               ],
               "Effect": "Allow",
               "Resource": {
-                "Fn::GetAtt": [
-                  "CustomPlaceIndex",
-                  "IndexArn"
-                ]
+                "Fn::GetAtt": ["CustomPlaceIndex", "IndexArn"]
               }
             }
           ],
@@ -303,10 +291,7 @@
   "Outputs": {
     "Name": {
       "Value": {
-        "Fn::GetAtt": [
-          "CustomPlaceIndex",
-          "IndexName"
-        ]
+        "Fn::GetAtt": ["CustomPlaceIndex", "IndexName"]
       }
     },
     "Region": {
@@ -322,10 +307,7 @@
     },
     "Arn": {
       "Value": {
-        "Fn::GetAtt": [
-          "CustomPlaceIndex",
-          "IndexArn"
-        ]
+        "Fn::GetAtt": ["CustomPlaceIndex", "IndexArn"]
       }
     }
   },
