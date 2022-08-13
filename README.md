@@ -1,7 +1,5 @@
 # EMS - Cert - Track
 
-Try it out here: [https://main.d2bi2ckea99bmh.amplifyapp.com/](https://ems-cert-track.com)
-
 ## Introduction
 
 An online checklist application for all levels of EMS to track there progress towards recertification
