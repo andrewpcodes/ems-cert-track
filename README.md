@@ -43,5 +43,5 @@ An online checklist application for all levels of EMS to track there progress to
 
 * Andrew Peterson (petersona3@wit.edu), Team Lead
 * Drew Labrie (labried2@wit.edy), Developer
-* Coung Ly (lec3.edu), Developer
+* Cuong Le (lec3@wit.edu), Developer
 * Frank Spathanas (spathanasf@wit.edu), Developer
