@@ -22,7 +22,7 @@ const Registration = () => {
   const [visible, setVisible] = useState(false);
   let navigate = useNavigate();
   const [alert, setAlert] = useState(false);
-
+  // establishes a user account with entered information
   async function signUp(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
@@ -42,7 +42,7 @@ const Registration = () => {
       console.log("error signing up:", error);
     }
   }
-
+  // Confirms account information after user signup
   async function confirmSignUp(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {

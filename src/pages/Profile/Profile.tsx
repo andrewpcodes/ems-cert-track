@@ -42,6 +42,8 @@ function Profile() {
   var [formCertifiedSince, setFormCertifiedSince] = useState("");
   var [formYearsCertified, setFormYearsCertified] = useState("");
 
+
+  // Loads all profile information on page load
   async function loadProfilePicture() {
     const setUserStuff = await Auth.currentAuthenticatedUser();
     try {
@@ -67,7 +69,7 @@ function Profile() {
   }
 
   loadProfilePicture();
-
+  // Uploads profile picture to S3 bucket for storage using a unique filename based on the email of the user
   const uploadProfile = async () => {
     try {
       if (fileData === undefined) {
@@ -86,7 +88,7 @@ function Profile() {
       setBadAlert(true);
     }
   };
-
+  // Uploads pdf file of your current certifications
   const uploadCertification = async () => {
     try {
       if (fileData === undefined) {
@@ -105,7 +107,7 @@ function Profile() {
       setBadAlert(true);
     }
   };
-
+  // Uploads resume for visitors to download
   const uploadResume = async () => {
     try {
       if (fileData === undefined) {
@@ -124,7 +126,7 @@ function Profile() {
       setBadAlert(true);
     }
   };
-
+  // Pulls resume for viewing and download
   const downloadResume = async () => {
     const result = await Storage.get(email + `resume.pdf`, {
       download: false,
@@ -133,7 +135,7 @@ function Profile() {
     console.log(result);
     window.open(result);
   };
-
+  // Pulls certifications for viewing and download
   const downloadCertification = async () => {
     const result = await Storage.get(email + `certification.pdf`, {
       download: false,
@@ -142,7 +144,7 @@ function Profile() {
     console.log(result);
     window.open(result);
   };
-
+  // Function for dealing with the edit information modal
   const editInformation = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const user = await Auth.currentAuthenticatedUser();
